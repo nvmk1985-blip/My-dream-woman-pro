@@ -59,9 +59,9 @@ jobs:
       - name: Accept Android SDK licenses
         run: yes | $ANDROID_HOME/cmdline-tools/latest/bin/sdkmanager --licenses 2>/dev/null || true
 
-      - name: Set versionCode from run number
+      - name: Keep Android versionCode above installed Build 246
         run: |
-          VERSION_CODE=${{ github.run_number }}
+          VERSION_CODE=$((246 + ${{ github.run_number }} - 1))
           node -e "
             const fs = require('fs');
             const p = 'artifacts/tamil-ai-chat/app.json';
