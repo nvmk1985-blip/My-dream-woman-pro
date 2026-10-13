@@ -59,9 +59,20 @@ jobs:
       - name: Accept Android SDK licenses
         run: yes | $ANDROID_HOME/cmdline-tools/latest/bin/sdkmanager --licenses 2>/dev/null || true
 
-      - name: Keep Android versionCode above installed Build 246
+      - name: Calculate 1.4.0 app build number
+        id: app_build
         run: |
-          VERSION_CODE=$((246 + ${{ github.run_number }} - 1))
+          BUILD_NUMBER=$(( ${{ github.run_number }} - 2 ))
+          if [ "$BUILD_NUMBER" -lt 1 ]; then
+            echo "::error::App build number must start at 1"
+            exit 1
+          fi
+          echo "build_number=$BUILD_NUMBER" >> "$GITHUB_OUTPUT"
+          echo "App build number: $BUILD_NUMBER"
+
+      - name: Set Android versionCode
+        run: |
+          VERSION_CODE=${{ steps.app_build.outputs.build_number }}
           node -e "
             const fs = require('fs');
             const p = 'artifacts/tamil-ai-chat/app.json';
@@ -110,7 +121,7 @@ jobs:
         working-directory: artifacts/tamil-ai-chat
         env:
           EXPO_PUBLIC_API_URL: https://my-dream-women-v-3-0.onrender.com
-          EXPO_PUBLIC_BUILD_NUMBER: ${{ github.run_number }}
+          EXPO_PUBLIC_BUILD_NUMBER: ${{ steps.app_build.outputs.build_number }}
           EXPO_NO_TELEMETRY: 1
           CI: 1
         run: |
@@ -227,7 +238,7 @@ jobs:
           if [ -z "$APK" ] || [ "$SIZE" -lt 1000000 ]; then
             echo "APK invalid ($SIZE bytes)"; tail -80 /tmp/gradle.log; exit 1
           fi
-          APK_NAME="my-dream-women-v${{ github.run_number }}.apk"
+          APK_NAME="my-dream-women-v1.4.0-${{ steps.app_build.outputs.build_number }}.apk"
           cp "$APK" "$APK_NAME"
           echo "APK_NAME=$APK_NAME" >> $GITHUB_ENV
 
@@ -235,12 +246,12 @@ jobs:
         env:
           GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: |
-          TAG="v${{ github.run_number }}"
+          TAG="v1.4.0-${{ steps.app_build.outputs.build_number }}"
           gh release delete "$TAG" --yes --cleanup-tag \
             --repo ${{ github.repository }} 2>/dev/null || true
           sleep 2
           gh release create "$TAG" "$APK_NAME" \
-            --title "My Dream Women — Build ${{ github.run_number }}" \
+            --title "My Dream Women — 1.4.0 (${{ steps.app_build.outputs.build_number }})" \
             --notes "$(git log -1 --pretty='format:%B' HEAD)" \
             --latest \
             --repo ${{ github.repository }}
