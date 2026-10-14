@@ -67,9 +67,9 @@
           "imageWidth": 340,
           "resizeMode": "contain",
           "android": {
-            "backgroundColor": "#0A050D",
-            "image": "./assets/images/splash.png",
-            "imageWidth": 340,
+            "backgroundColor": "#0A1024",
+            "image": "./assets/images/pro-app-icon.png",
+            "imageWidth": 288,
             "resizeMode": "contain"
           }
         }

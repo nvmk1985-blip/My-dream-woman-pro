@@ -136,8 +136,8 @@ jobs:
             echo "Android splash theme is missing windowSplashScreenBackground"
             exit 1
           fi
-          if ! grep -R -qi "#0A050D" "$RES"/values*; then
-            echo "Android splash background color #0A050D was not generated"
+          if ! grep -R -qi "#0A1024" "$RES"/values*; then
+            echo "Android splash background color #0A1024 was not generated"
             exit 1
           fi
           grep -R -n -E "windowSplashScreenBackground|#0A050D" "$RES"/values* || true

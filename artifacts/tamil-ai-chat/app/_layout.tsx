@@ -11,7 +11,7 @@ import React, { useCallback, useEffect, useState } from "react";
 import { GestureHandlerRootView } from "react-native-gesture-handler";
 import { SafeAreaProvider } from "react-native-safe-area-context";
 import {
-  View, Text, TouchableOpacity, StyleSheet, Image,
+  View, Text, TouchableOpacity, StyleSheet,
   StatusBar, Dimensions, ScrollView, Platform,
 } from "react-native";
 import AsyncStorage from "@react-native-async-storage/async-storage";
@@ -88,7 +88,6 @@ export default function RootLayout() {
   const [savedPin, setSavedPin] = useState<string | null>(null);
   const [pinInput, setPinInput] = useState('');
   const [pinError, setPinError] = useState('');
-  const [launchSplashVisible, setLaunchSplashVisible] = useState(true);
 
   // ── Permission onboarding (one-time, Meta AI style) ──────────
   // null = still checking AsyncStorage; undefined = done (no overlay)
@@ -143,25 +142,10 @@ export default function RootLayout() {
   useEffect(() => {
     if (fontsLoaded || fontError) {
       SplashScreen.hideAsync();
-      const timer = setTimeout(() => setLaunchSplashVisible(false), 1000);
-      return () => clearTimeout(timer);
     }
   }, [fontsLoaded, fontError]);
 
   if (!fontsLoaded && !fontError) return null;
-
-  if (launchSplashVisible) {
-    return (
-      <View style={launchSplash.container}>
-        <StatusBar hidden />
-        <Image
-          source={require("../assets/images/splash.png")}
-          style={launchSplash.image}
-          resizeMode="contain"
-        />
-      </View>
-    );
-  }
 
   // ── Show crash log screen if a crash was saved ────────────────
   if (crashChecked && crashLog) {
@@ -328,17 +312,6 @@ export default function RootLayout() {
 }
 
 const KEY_W = (width - 48 - 24) / 3;
-
-const launchSplash = StyleSheet.create({
-  container: {
-    ...StyleSheet.absoluteFillObject,
-    backgroundColor: '#0A050D',
-  },
-  image: {
-    width: '100%',
-    height: '100%',
-  },
-});
 
 const crash = StyleSheet.create({
   bg: { flex: 1, backgroundColor: '#1a0000' },
