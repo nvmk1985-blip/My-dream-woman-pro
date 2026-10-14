@@ -157,7 +157,7 @@ export default function RootLayout() {
         <Image
           source={require("../assets/images/splash.png")}
           style={launchSplash.image}
-          resizeMode="cover"
+          resizeMode="contain"
         />
       </View>
     );
@@ -332,7 +332,7 @@ const KEY_W = (width - 48 - 24) / 3;
 const launchSplash = StyleSheet.create({
   container: {
     ...StyleSheet.absoluteFillObject,
-    backgroundColor: '#000',
+    backgroundColor: '#0A050D',
   },
   image: {
     width: '100%',

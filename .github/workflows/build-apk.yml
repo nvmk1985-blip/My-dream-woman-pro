@@ -129,6 +129,19 @@ jobs:
           if [ ! -d android ]; then echo "android/ not created"; exit 1; fi
           echo "android/ created"
 
+      - name: Verify Android splash theme background
+        run: |
+          RES="artifacts/tamil-ai-chat/android/app/src/main/res"
+          if ! grep -R -q "windowSplashScreenBackground" "$RES"/values*; then
+            echo "Android splash theme is missing windowSplashScreenBackground"
+            exit 1
+          fi
+          if ! grep -R -qi "#0A050D" "$RES"/values*; then
+            echo "Android splash background color #0A050D was not generated"
+            exit 1
+          fi
+          grep -R -n -E "windowSplashScreenBackground|#0A050D" "$RES"/values* || true
+
       - name: Verify generated media permissions
         run: |
           MANIFEST="artifacts/tamil-ai-chat/android/app/src/main/AndroidManifest.xml"
@@ -162,7 +175,7 @@ jobs:
 
       - name: Inject custom icons via ImageMagick
         run: |
-          ICON="artifacts/tamil-ai-chat/assets/images/icon.png"
+          ICON="artifacts/tamil-ai-chat/assets/images/pro-app-icon.png"
           ADAPTIVE="artifacts/tamil-ai-chat/assets/images/adaptive-icon-foreground.png"
           RES="artifacts/tamil-ai-chat/android/app/src/main/res"
 

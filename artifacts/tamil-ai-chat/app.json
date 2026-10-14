@@ -4,7 +4,7 @@
     "slug": "tamil-ai-chat",
     "version": "1.4.0",
     "orientation": "portrait",
-    "icon": "./assets/images/icon.png",
+    "icon": "./assets/images/pro-app-icon.png",
     "scheme": "my-girls",
     "userInterfaceStyle": "light",
     "newArchEnabled": false,
@@ -19,8 +19,8 @@
     },
     "splash": {
       "image": "./assets/images/splash.png",
-      "resizeMode": "cover",
-      "backgroundColor": "#000000"
+      "resizeMode": "contain",
+      "backgroundColor": "#0A050D"
     },
     "ios": {
       "supportsTablet": false,
@@ -29,7 +29,7 @@
     "android": {
       "adaptiveIcon": {
         "foregroundImage": "./assets/images/adaptive-icon-foreground.png",
-        "backgroundColor": "#000000"
+        "backgroundColor": "#0A050D"
       },
       "package": "com.smk1.tamilaichat.pro",
       "versionCode": 1,
@@ -50,7 +50,7 @@
       ]
     },
     "web": {
-      "favicon": "./assets/images/icon.png"
+      "favicon": "./assets/images/pro-app-icon.png"
     },
     "plugins": [
       [
@@ -62,10 +62,14 @@
       [
         "expo-splash-screen",
         {
+          "backgroundColor": "#0A050D",
+          "image": "./assets/images/splash.png",
+          "imageWidth": 340,
+          "resizeMode": "contain",
           "android": {
-            "backgroundColor": "#000000",
-            "image": "./assets/images/splash-icon.png",
-            "imageWidth": 180,
+            "backgroundColor": "#0A050D",
+            "image": "./assets/images/splash.png",
+            "imageWidth": 340,
             "resizeMode": "contain"
           }
         }
