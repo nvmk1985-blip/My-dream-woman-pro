@@ -8,7 +8,7 @@ import {
 import * as ImagePicker from 'expo-image-picker';
 import * as ImageManipulator from 'expo-image-manipulator';
 import { SafeAreaView, useSafeAreaInsets } from 'react-native-safe-area-context';
-import { Stack, useRouter, useFocusEffect } from 'expo-router';
+import { Stack, useRouter, useFocusEffect, useLocalSearchParams } from 'expo-router';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import Constants from 'expo-constants';
 import { ALL_PERSONAS, Persona } from '../constants/personas';
@@ -113,6 +113,8 @@ const KEYS = ['1','2','3','4','5','6','7','8','9','','0','⌫'];
 
 export default function AIGirlsScreen() {
   const router = useRouter();
+  const { action } = useLocalSearchParams<{ action?: string }>();
+  const routedActionRef = useRef<string | null>(null);
   const insets = useSafeAreaInsets();
   const [personas, setPersonas] = useState<PersonaWithExtra[]>([]);
   const [loading, setLoading] = useState(true);
@@ -886,6 +888,19 @@ Then write these prompts:
   };
 
     // ── Settings helpers ──────────────────────────────────────────
+  useEffect(() => {
+    if (!action) {
+      routedActionRef.current = null;
+      return;
+    }
+    if (action !== 'group' && action !== 'script') return;
+    if (routedActionRef.current === action) return;
+    routedActionRef.current = action;
+    if (action === 'group') setShowGroupModal(true);
+    else void handlePhotoToScript();
+    router.setParams({ action: undefined } as any);
+  }, [action, router]);
+
   const toggleOnline = async () => {
     const next = !isOnline;
     setIsOnline(next);
