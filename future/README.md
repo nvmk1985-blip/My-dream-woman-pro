@@ -31,6 +31,170 @@
 
 ![Storage Hub, PIN, and intervals reference](references/storage-hub-pin-interval-premium.jpeg)
 
+### Premium Theme Token Reference — Steps 3–7
+
+இந்த reference, அடுத்த UI படிகளில் பயன்படுத்த வேண்டிய தற்போதைய tokens-ஐ பட்டியலிடுகிறது. Canonical source: `artifacts/tamil-ai-chat/constants/colors.ts`; app screens-ல் `useColors()` மூலம் அணுகவும். புதிய hard-coded color values சேர்க்காமல், கீழே உள்ள semantic token-ஐத் தேர்ந்தெடுக்கவும். ஏதேனும் token மாறினால் source code மற்றும் இந்த reference இரண்டையும் ஒரே branch-ல் புதுப்பிக்கவும்.
+
+#### Surfaces and cards
+
+| Token | பயன்பாடு | Value |
+| --- | --- | --- |
+| `bgPrimary` | Main app background | `#080B0D` |
+| `bgSecondary` | Secondary section background | `#0C1215` |
+| `bgTertiary` | Tertiary surface | `#111A1E` |
+| `bgElevated` | Elevated panel | `#162126` |
+| `bgDeep` | Deep background | `#050708` |
+| `leatherBlack` | Leather-black surface | `#101416` |
+| `leatherCharcoal` | Charcoal leather surface | `#1A2022` |
+| `panelDark` | Dark panel | `#0D171B` |
+| `card` | Standard card | `#11191C` |
+| `cardSecondary` | Secondary card | `#172226` |
+| `cardElevated` | Elevated card | `#1B292E` |
+
+#### Royal gold
+
+| Token | பயன்பாடு | Value |
+| --- | --- | --- |
+| `goldPrimary` | Premium emphasis, primary action | `#D4AF6A` |
+| `goldBright` | Bright/selected gold | `#F4D58D` |
+| `goldLight` | Light metallic highlight | `#FFE8B0` |
+| `goldDark` | Dark gold shade | `#9B773A` |
+| `goldDeep` | Deep gold shade | `#705327` |
+| `goldBorder` | Premium border | `#B89555` |
+| `goldMuted` | Muted gold detail | `#8D774E` |
+| `goldGlow` | Gold glow tint | `rgba(212, 175, 106, 0.24)` |
+
+#### Sky blue and cyan
+
+| Token | பயன்பாடு | Value |
+| --- | --- | --- |
+| `cyanPrimary` | Active interactions and controls | `#55DDF5` |
+| `cyanBright` | Bright/focused cyan | `#80EEFF` |
+| `cyanLight` | Light cyan highlight | `#B6F5FF` |
+| `cyanDark` | Dark cyan shade | `#168FA8` |
+| `skyBlue` | Secondary blue highlight | `#63BFF2` |
+| `cyanBorder` | Active border | `#278EA3` |
+| `cyanGlow` | Cyan glow tint | `rgba(85, 221, 245, 0.24)` |
+| `cyanSoft` | Soft cyan surface | `rgba(85, 221, 245, 0.10)` |
+
+#### Typography colors
+
+| Token | பயன்பாடு | Value |
+| --- | --- | --- |
+| `textPrimary` | Main text | `#F5F1E8` |
+| `textSecondary` | Secondary text | `#C8D0D1` |
+| `textTertiary` | Supporting text | `#96A5A8` |
+| `textMuted` | Muted text | `#718084` |
+| `textDisabled` | Disabled text | `#505B5E` |
+| `textGold` | Gold-highlighted text | `#F4D58D` |
+| `textCyan` | Cyan-highlighted text | `#80EEFF` |
+| `textOnGold` | Text on gold controls | `#15120B` |
+| `textOnCyan` | Text on cyan controls | `#061014` |
+
+#### Borders and glass
+
+| Token | பயன்பாடு | Value |
+| --- | --- | --- |
+| `border` | Standard border | `#29373B` |
+| `borderSubtle` | Subtle divider/border | `#1C292D` |
+| `borderGold` | Premium border | `#B89555` |
+| `borderCyan` | Active border | `#278EA3` |
+| `glassBackground` | Glass panel fill | `rgba(17, 26, 30, 0.88)` |
+| `glassGoldBorder` | Glass panel premium edge | `rgba(212, 175, 106, 0.42)` |
+| `glassCyanBorder` | Glass panel interactive edge | `rgba(85, 221, 245, 0.32)` |
+| `overlay` | Modal/scrim overlay | `rgba(0, 0, 0, 0.76)` |
+
+#### Buttons
+
+| Token | பயன்பாடு | Value |
+| --- | --- | --- |
+| `buttonGold` | Premium/confirmation button | `#D4AF6A` |
+| `buttonGoldHover` | Gold button highlighted state | `#F4D58D` |
+| `buttonGoldPressed` | Gold button pressed state | `#B89555` |
+| `buttonGoldText` | Text on gold button | `#15120B` |
+| `buttonCyan` | Interactive tool/action button | `#55DDF5` |
+| `buttonCyanHover` | Cyan button highlighted state | `#80EEFF` |
+| `buttonCyanPressed` | Cyan button pressed state | `#168FA8` |
+| `buttonCyanText` | Text on cyan button | `#061014` |
+| `buttonSecondary` | Secondary button | `#172226` |
+| `buttonSecondaryHover` | Secondary button highlighted state | `#223237` |
+| `buttonSecondaryText` | Text on secondary button | `#F5F1E8` |
+| `buttonDisabled` | Disabled button | `#293034` |
+
+#### Inputs and forms
+
+| Token | பயன்பாடு | Value |
+| --- | --- | --- |
+| `inputBackground` | Input fill | `#0B1215` |
+| `inputBorder` | Default input border | `#35464B` |
+| `inputFocus` | Focused input border | `#55DDF5` |
+| `inputText` | Input value | `#F5F1E8` |
+| `inputPlaceholder` | Placeholder text | `#829196` |
+| `inputLabel` | Field label | `#C8D0D1` |
+
+#### Chat and status
+
+| Token | பயன்பாடு | Value |
+| --- | --- | --- |
+| `chatBackground` | Chat surface | `#080D10` |
+| `chatUserBubble` | User message bubble | `#153D46` |
+| `chatUserText` | User message text | `#F5FCFF` |
+| `chatAiBubble` | AI message bubble | `#172126` |
+| `chatAiText` | AI message text | `#F5F1E8` |
+| `chatDivider` | Chat divider | `#29373B` |
+| `chatTimestamp` | Message timestamp | `#96A5A8` |
+| `chatOnline` | Online/active indicator | `#55DDF5` |
+| `success` | Success message/state | `#55D6A0` |
+| `warning` | Warning message/state | `#F2C66D` |
+| `error` | Error message/state | `#FF7D86` |
+| `info` | Informational message/state | `#63BFF2` |
+
+#### Layout and typography scale
+
+| Token | Value | பயன்பாடு |
+| --- | --- | --- |
+| `radius` | `10` | Existing shared corner radius |
+| `spacing.space1` / `space2` / `space3` | `4` / `8` / `12` | Tight spacing |
+| `spacing.space4` / `space5` | `16` / `20` | Standard content spacing |
+| `spacing.space6` / `space8` | `24` / `32` | Section spacing |
+| `typography.fontSize.pageTitle` | `26` | Page title |
+| `typography.fontSize.sectionHeading` | `20` | Section heading |
+| `typography.fontSize.cardTitle` | `17` | Card title |
+| `typography.fontSize.body` | `15` | Body copy |
+| `typography.fontSize.supporting` | `13` | Supporting copy |
+| `typography.fontSize.button` | `15` | Button label |
+| `typography.fontSize.metadata` | `12` | Metadata |
+| `typography.fontWeight` | `400`, `500`, `600`, `700` | Regular, medium, semibold, bold |
+| `typography.lineHeight` | `36`, `28`, `24`, `22`, `19`, `21`, `17` | Page title, section, card, body, supporting, button, metadata order |
+| `typography.fontFamily` | `regular`: `Inter_400Regular`; `medium`: `Inter_500Medium`; `semibold`: `Inter_600SemiBold`; `bold`: `Inter_700Bold`; `decorativeSerif`: `serif`; `mono`: `monospace` | Use loaded Inter weights; let Tamil use platform fallback where needed |
+
+#### Gradients and glow effects
+
+| Token | Value |
+| --- | --- |
+| `gradients.royalGold` | `#8D6A32 → #D4AF6A → #FFE8B0 → #B89555` |
+| `gradients.skyBlueNeon` | `#168FA8 → #55DDF5 → #B6F5FF` |
+| `gradients.premiumDarkGlass` | `rgba(28, 41, 46, 0.96) → rgba(8, 11, 13, 0.96)` |
+| `effects.goldGlow` | Shadow `#D4AF6A`, opacity `0.18`, radius `12`, offset `(0, 0)`, elevation `3` |
+| `effects.cyanGlow` | Shadow `#55DDF5`, opacity `0.20`, radius `14`, offset `(0, 0)`, elevation `4` |
+
+#### Existing `useColors()` compatibility aliases
+
+புதிய screen-களுக்கு மேலே உள்ள semantic tokens-ஐ முன்னுரிமையாகப் பயன்படுத்தவும். Existing screens மாறும் வரை இந்த aliases-ஐ வைத்திருக்கவும்:
+
+| Existing key | Maps to |
+| --- | --- |
+| `background` / `foreground` | `bgPrimary` / `textPrimary` |
+| `primary` / `primaryForeground` | `goldPrimary` / `textOnGold` |
+| `secondary` / `secondaryForeground` | `buttonSecondary` / `buttonSecondaryText` |
+| `accent` / `accentForeground` / `tint` | `cyanPrimary` / `textOnCyan` / `cyanPrimary` |
+| `muted` / `mutedForeground` | `leatherCharcoal` / `textTertiary` |
+| `text` / `cardForeground` | `textPrimary` / `textPrimary` |
+| `destructive` / `destructiveForeground` | `error` / `textPrimary` |
+| `input` | `inputBorder` |
+
+`light` மற்றும் `dark` system schemes இரண்டும் ஒரே fixed dark luxury palette-ஐப் பயன்படுத்துகின்றன. Gold-ஐ premium emphasis/confirmation-க்கு, cyan-ஐ interaction/focus/active states-க்கு பயன்படுத்தவும்; ஒவ்வொரு screen-லும் Tamil text readable ஆக இருப்பதைச் சரிபார்க்கவும்.
+
 COMPLETE PREMIUM UI/UX REDESIGN
 
 Black Leather + Royal Gold + Sky Blue Neon + Premium Glassmorphism
