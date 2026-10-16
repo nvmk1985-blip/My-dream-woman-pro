@@ -1,19 +1,19 @@
 # Future handoffs
 
-This directory is for verified handoff notes so another agent can continue work in the existing My Dream Woman Pro GitHub repository.
+இந்த directory, ஏற்கெனவே உள்ள My Dream Woman Pro GitHub app-ஐத் தொடர்ந்து பராமரிக்க அடுத்த agent பயன்படும் உறுதிப்படுத்தப்பட்ட handoff தகவல்களுக்கானது. புதிய app உருவாக்க வேண்டாம்.
 
-## Current status
-- Step 1 read-only audit: **not started**.
-- This file is a placeholder, not an audit report. Do not treat any unverified assumptions as findings.
-- No redesign changes have been made to the GitHub app.
+## தற்போதைய நிலை
+- Step 1 read-only audit: **முடிந்தது** — [step-1-audit.md](step-1-audit.md).
+- ஆய்வு செய்த app source commit: `7a1fadc0a928b6975edecd1e8d646c67382ce0fb`.
+- இந்த handoff commit-ல் `future/` ஆவணங்கள் மட்டும் சேர்க்கப்பட்டன; app source/assets மாற்றப்படவில்லை.
+- Step 1-க்கு GitHub Action trigger செய்யப்படவில்லை.
 
-## Project guardrails
-- Continue in the existing app; do not create a replacement app.
-- Keep `/welcome` and `artifacts/tamil-ai-chat/app/home.tsx` unchanged during the redesign.
-- Preserve all current app behavior and integrations. Prefer visual-only changes.
-- Do not fix errors or CI failures without the user's explicit approval. Investigate independent failure paths in parallel, report findings, and wait before fixing.
-- Visual reference: dark obsidian base, glossy layered cards, role-based neon teal/green, purple, cyan/blue, red status, and restrained gold highlights. Preserve existing Tamil copy.
-- After each approved code phase, push the phase and trigger the agreed GitHub Actions workflow. Re-check workflow side effects before triggering it.
+## கட்டாய guardrails
+- `/welcome` மற்றும் `artifacts/tamil-ai-chat/app/home.tsx` மாற்றக்கூடாது.
+- ஏற்கெனவே உள்ள செயல்பாடுகள், integrations, handlers, API payloads, storage, notifications மற்றும் media flows-ஐ பாதுகாக்கவும்.
+- User-ன் தெளிவான OK இல்லாமல் எந்த error அல்லது CI failure-யும் fix செய்யக்கூடாது; முதலில் காரணத்தை report செய்து காத்திருக்கவும்.
+- Visual direction: obsidian/கருப்பு, glossy layers, teal/green, purple, cyan/blue, red status, அளவான gold; தமிழ் copy-ஐ பாதுகாக்கவும்.
+- ஒப்புதல் பெற்ற ஒவ்வொரு code phase-க்கும் push + GitHub Actions build வேண்டுமென user கூறியுள்ளார். தற்போதைய `Build APK` Action Release tag-ஐ delete/recreate செய்து APK வெளியிடும்; trigger செய்வதற்கு முன் இந்த side effect-ஐ உறுதிப்படுத்தவும்.
 
-## Step 1 handoff
-After the read-only audit is completed, add `step-1-audit.md` with the verified route/file map, protected behavior, baseline checks and results, duplicate-app check, workflow trigger details, open questions, and the exact next step. Include no secrets or token values.
+## அடுத்த நிலை
+Step 2-ல் கேட்ட design system-ஐ முடித்து/present செய்த பிறகே app UI-ஐ மாற்றத் தொடங்கவும். ஏழு கட்ட பரிந்துரை மற்றும் உறுதிப்படுத்தப்பட்ட route/handler map `step-1-audit.md`-ல் உள்ளது. Step 2 இன்னும் தொடங்கப்படவில்லை.
