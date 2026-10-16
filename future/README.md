@@ -21,6 +21,13 @@
 
 புதிய இணைக்கப்பட்ட file-ன் விவரக்குறிப்பு, முந்தைய Black + Electric Purple brief-ஐ முழுமையாக மாற்றுகிறது. Step 2 / app implementation இன்னும் தொடங்கவில்லை. ஒவ்வொரு code phase-க்கும் முன் user-ன் வெளிப்படையான OK பெறவும்.
 
+
+### Reference Images
+
+![Chat UI and Image Studio reference](references/chat-image-studio-premium.jpeg)
+
+![Storage Hub, PIN, and intervals reference](references/storage-hub-pin-interval-premium.jpeg)
+
 COMPLETE PREMIUM UI/UX REDESIGN
 
 Black Leather + Royal Gold + Sky Blue Neon + Premium Glassmorphism
