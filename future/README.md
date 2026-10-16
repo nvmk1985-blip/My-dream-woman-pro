@@ -12,7 +12,7 @@
 - `/welcome` மற்றும் `artifacts/tamil-ai-chat/app/home.tsx` மாற்றக்கூடாது.
 - ஏற்கெனவே உள்ள செயல்பாடுகள், integrations, handlers, API payloads, storage, notifications மற்றும் media flows-ஐ பாதுகாக்கவும்.
 - ஒவ்வொரு code phase-க்கும் முன் user-ன் வெளிப்படையான OK பெற வேண்டும்; OK வரும் வரை code மாற்றக்கூடாது.
-- User கொடுத்த screenshot/error-ஐ மட்டுமே target ஆக எடுத்துக்கொள்ளவும். Error அல்லது CI failure-ஐ ஊகிக்காமல், தொடர்புடைய எல்லா failure path-களையும் parallel-ஆ விசாரித்து verified காரணங்களையும் proposed fix-ஐயும் report செய்து, OK வரும் வரை காத்திருக்கவும்.
+- User நேரடியாகக் கூறிய issue/error-ஐ மட்டுமே target ஆக எடுத்துக்கொள்ளவும். Screenshot-கள் துணை ஆதாரங்கள் மட்டுமே; அவற்றிலிருந்து user சொல்லாத error-ஐ ஊகிக்கவோ, screenshot-ஐ user-ன் விளக்கத்தை விட மேலானதாகக் கருதவோ கூடாது. Error அல்லது CI failure-ஐ ஊகிக்காமல், user சுட்டிக்காட்டிய issue-க்கு தொடர்புடைய எல்லா failure path-களையும் parallel-ஆ விசாரித்து verified காரணங்களையும் proposed fix-ஐயும் report செய்து, OK வரும் வரை காத்திருக்கவும்.
 - ஏழு திட்டமிட்ட படிகளுக்கான code changes-ஐ ஒரே feature branch-ல் வைத்திருக்கவும். இடைப்பட்ட phase/push-களுக்கு APK build செய்யக்கூடாது. ஏழு படிகளும் முடிந்து approval கிடைத்த பிறகு branch-ஐ `main`-க்கு merge செய்து, `main`-ல் இருந்து ஒரே `Build APK` workflow-ஐ கைமுறையாக trigger செய்யவும்.
 - Visual direction: obsidian/கருப்பு, glossy layers, teal/green, purple, cyan/blue, red status, அளவான gold; தமிழ் copy-ஐ பாதுகாக்கவும்.
 - `Build APK` workflow கைமுறையாக trigger செய்யப்படும்; அது APK-ஐ GitHub Release-ல் வெளியிடும். அதே tag-ஐ rerun செய்தால் அந்த release/tag-ஐ delete செய்து மீண்டும் உருவாக்கும்; Render redeploy இயல்பாக false. Trigger-க்கு முன் இந்த side effects-ஐ user-க்கு தெளிவுபடுத்தவும்.
