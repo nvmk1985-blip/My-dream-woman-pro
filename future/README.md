@@ -46,4 +46,4 @@
 
 ## தற்போதைய Actions வரம்பு
 
-GitHub Actions-ல் தற்போது `Build APK` workflow மட்டுமே உள்ளது; validation-only workflow கிடைக்கவில்லை. `Build APK` manual `workflow_dispatch` மட்டுமே, Release tag-ஐ delete/recreate செய்து APK வெளியிடும்; `deploy_render` default false. README-only மாற்றத்திற்கு build தேவையில்லை. Code phase-களுக்கான validation-only workflow இல்லாத நிலையில், Build APK-ஐ முன்கூட்டியே இயக்கவோ புதிய workflow உருவாக்கவோ வேண்டாம்; அந்த blocker-ஐ user-க்கு report செய்து ஒப்புதல் பெறவும்.
+GitHub Actions-ல் தற்போது `Build APK` workflow மட்டுமே உள்ளது; தனி validation-only workflow இல்லை. `Build APK` manual `workflow_dispatch` மூலம் இயக்கப்பட்டு GitHub Release tag-ஐ delete/recreate செய்து APK வெளியிடும். ஆகவே Step 1–6 முடியும் வரை எந்த Actions build-யும் trigger செய்ய வேண்டாம். Step 7-ல் full regression மற்றும் final push முடிந்த பிறகே `Build APK`-ஐ trigger செய்யவும். `deploy_render` default false-ஆக இருக்க வேண்டும். README-only மாற்றங்களுக்கு APK build தேவையில்லை.
