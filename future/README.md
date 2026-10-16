@@ -4,8 +4,11 @@
 
 ## தற்போதைய நிலை
 - Step 1 read-only audit: **முடிந்தது** — [step-1-audit.md](step-1-audit.md).
+- Step 2 shared design-token foundation: **முடிந்தது** — [step-2-design-system.md](step-2-design-system.md).
+- Step 2 code branch: `feature/black-leather-royal-gold` (இன்னும் `main`-க்கு merge செய்யப்படவில்லை); code commit `3e69dd3855e1576e7a5bdbfab1f1bd53f458af41`.
+- Screen-by-screen redesign தொடங்கவில்லை; Step 3-க்கு user-ன் வெளிப்படையான approval காத்திருக்கிறது.
 - ஆய்வு செய்த app source commit: `7a1fadc0a928b6975edecd1e8d646c67382ce0fb`.
-- இந்த handoff commit-ல் `future/` ஆவணங்கள் மட்டும் சேர்க்கப்பட்டன; app source/assets மாற்றப்படவில்லை.
+- Step 1 handoff commit-ல் `future/` ஆவணங்கள் மட்டும் சேர்க்கப்பட்டன; அப்போது app source/assets மாற்றப்படவில்லை.
 - Step 1-க்கு GitHub Action trigger செய்யப்படவில்லை.
 
 ## கட்டாய guardrails
@@ -17,9 +20,9 @@
 - Visual direction: Black Leather + Royal Gold + Sky Blue/Cyan Neon + subtle premium glassmorphism; deep charcoal backgrounds (#080B0D), gold for premium emphasis, cyan for interactive states, warm-white text, and readable Tamil copy.
 - `Build APK` workflow கைமுறையாக trigger செய்யப்படும்; அது APK-ஐ GitHub Release-ல் வெளியிடும். அதே tag-ஐ rerun செய்தால் அந்த release/tag-ஐ delete செய்து மீண்டும் உருவாக்கும்; Render redeploy இயல்பாக false. Trigger-க்கு முன் இந்த side effects-ஐ user-க்கு தெளிவுபடுத்தவும்.
 
-## Requested design brief — Black Leather + Royal Gold (Step 2; implementation pending)
+## Requested design brief — Black Leather + Royal Gold (Step 2 token system complete; screen phases pending)
 
-புதிய இணைக்கப்பட்ட file-ன் விவரக்குறிப்பு, முந்தைய Black + Electric Purple brief-ஐ முழுமையாக மாற்றுகிறது. Step 2 / app implementation இன்னும் தொடங்கவில்லை. ஒவ்வொரு code phase-க்கும் முன் user-ன் வெளிப்படையான OK பெறவும்.
+புதிய இணைக்கப்பட்ட file-ன் விவரக்குறிப்பு, முந்தைய Black + Electric Purple brief-ஐ முழுமையாக மாற்றுகிறது. Step 2 shared theme-token foundation `feature/black-leather-royal-gold` branch-ல் முடிந்தது. Screen-by-screen UI implementation இன்னும் தொடங்கவில்லை; ஒவ்வொரு அடுத்த code phase-க்கும் முன் user-ன் வெளிப்படையான OK பெறவும்.
 
 
 ### Reference Images
@@ -559,4 +562,4 @@ Prioritize usability, premium visual hierarchy, accurate text alignment, and pre
 - Build trigger-க்கு முன் Release side effect-ஐ தெரிவிக்கவும்: workflow APK-ஐ GitHub Release-ல் வெளியிடும்; அதே tag-ஐ rerun செய்தால் ஏற்கெனவே உள்ள release/tag-ஐ delete செய்து மீண்டும் உருவாக்கும். Render redeploy input இயல்பாக false.
 
 ## அடுத்த நிலை
-Step 2-ல் கேட்ட design system-ஐ முடித்து/present செய்த பிறகே app UI-ஐ மாற்றத் தொடங்கவும். ஏழு கட்ட பரிந்துரை மற்றும் உறுதிப்படுத்தப்பட்ட route/handler map `step-1-audit.md`-ல் உள்ளது. Step 2 இன்னும் தொடங்கப்படவில்லை.
+Step 2 shared design system முடிந்தது — அதன் விவரங்கள் [step-2-design-system.md](step-2-design-system.md)-ல் உள்ளன. அடுத்தது Step 3: Settings modal, `/settings`, `/keys`; இந்த screen phase-க்கு முன் user-ன் வெளிப்படையான OK பெறவும். ஏழு கட்ட பரிந்துரை மற்றும் உறுதிப்படுத்தப்பட்ட route/handler map `step-1-audit.md`-ல் உள்ளது.
