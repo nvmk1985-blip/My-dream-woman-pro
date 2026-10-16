@@ -35,7 +35,7 @@
 ## பயனர் வரையறுத்த ஏழு கட்டங்கள்
 
 1. **Step 1 — Read-only baseline:** ஒவ்வொரு screen-ன் handlers, state, API/navigation/storage, upload மற்றும் error paths-ஐ map செய்து build baseline-ஐப் பதிவு செய்யவும். `future/step-1-audit.md`-ல் read-only audit முடிந்துள்ளது; அதன் local-check வரம்புகளைப் பின்பற்றவும். இந்த கட்டத்தில் code change/push/build கிடையாது.
-2. **Step 2 — Design foundation + app icon:** design tokens/components மற்றும் icon assets-ийг வரையறுத்து/present செய்யவும். Home/Welcome/splash-ஐத் தொடக்கூடாது.
+2. **Step 2 — Design foundation + app icon:** design tokens/components மற்றும் icon design-ஐ வரையறுத்து/present செய்யவும். முதலில் proposed app icon-ன் screenshot/mockup-ஐ பயனருக்கு அனுப்பி வெளிப்படையான OK பெறவும்; அதற்கு முன் actual app icon asset-ஐ மாற்றக்கூடாது. OK பிறகே app icon asset-ஐ மாற்றி feature branch-க்கு code-ஐ push செய்யவும். Home/Welcome/splash-ஐத் தொடக்கூடாது.
 3. **Step 3 — Settings + உள்ளமைந்த options:** Online, Auto Message/AI, ringtone, character interval, PIN, Keys & Accounts உள்ளிட்ட controls-ஐ cover செய்து ஒவ்வொன்றின் தற்போதைய behavior-ஐச் சோதிக்கவும்.
 4. **Step 4 — Chat + Character list/Edit:** message send/history, character தேர்வு, edit/save மற்றும் navigation flows-ஐப் பாதுகாத்து சோதிக்கவும்.
 5. **Step 5 — Cloudinary + Gallery + Image-to-Script:** upload, preview, gallery, generation மற்றும் empty/loading/error states-ஐ cover செய்யவும்.
