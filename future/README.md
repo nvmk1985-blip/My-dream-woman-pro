@@ -15,5 +15,12 @@
 - Visual direction: obsidian/கருப்பு, glossy layers, teal/green, purple, cyan/blue, red status, அளவான gold; தமிழ் copy-ஐ பாதுகாக்கவும்.
 - ஒப்புதல் பெற்ற ஒவ்வொரு code phase-க்கும் push + GitHub Actions build வேண்டுமென user கூறியுள்ளார். தற்போதைய `Build APK` Action Release tag-ஐ delete/recreate செய்து APK வெளியிடும்; trigger செய்வதற்கு முன் இந்த side effect-ஐ உறுதிப்படுத்தவும்.
 
+## கட்டம்-வாரியான handoff பதிவு
+
+- ஒவ்வொரு step முடிந்ததும், `future/step-N-<சுருக்கப்பெயர்>.md` என்ற file-ல் முடிந்த scope, மாற்றிய files, verification/build முடிவு, commit SHA, blockers, அடுத்த step மற்றும் pending approval-களை பதிவு செய்யவும். Step 1-க்கு உள்ள `step-1-audit.md` பெயரிடும் முறையைப் பின்பற்றவும்.
+- `future/README.md`-ல் தற்போதைய status, முடிந்த step, அடுத்த step, அந்த step-க்கு தேவையான approval, தொடர்புடைய handoff file link ஆகியவற்றைப் புதுப்பிக்கவும். Verified evidence மட்டுமே குறிப்பிடவும்; secrets சேர்க்க வேண்டாம்.
+- Handoff docs-ஐ GitHub-க்கு normal commit/push ஆகச் சேர்க்கவும்; இது `Build APK` workflow-ஐ trigger செய்யும் முறை அல்ல. Docs-only update-க்கு APK build தேவையில்லை.
+- User-ஒப்புதல் பெற்ற code phase-க்கு code மற்றும் handoff update-ஐ commit/push செய்த பின் `Build APK`-ஐ தனியாக trigger செய்யவும்; trigger செய்வதற்கு முன் workflow-ன் Release/deploy side effects-ஐ சரிபார்த்து தெரிவிக்கவும்.
+
 ## அடுத்த நிலை
 Step 2-ல் கேட்ட design system-ஐ முடித்து/present செய்த பிறகே app UI-ஐ மாற்றத் தொடங்கவும். ஏழு கட்ட பரிந்துரை மற்றும் உறுதிப்படுத்தப்பட்ட route/handler map `step-1-audit.md`-ல் உள்ளது. Step 2 இன்னும் தொடங்கப்படவில்லை.
