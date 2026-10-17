@@ -6,10 +6,12 @@
 - Step 1 read-only audit: **முடிந்தது** — [step-1-audit.md](step-1-audit.md).
 - Step 2 shared design-token foundation: **முடிந்தது** — [step-2-design-system.md](step-2-design-system.md).
 - Step 2 visual design board and icon concept exports: **முடிந்தது** — [design guide](../docs/design-system/README.md), [UI implementation guide](../docs/AGENTS.md), and [updated Step 2 handoff](step-2-design-system.md) (handoff update commit `adafeb66f752`). The icon exports remain design-only and are not wired into app assets.
-- Steps 2–3 branch: `feature/black-leather-royal-gold` (இன்னும் `main`-க்கு merge செய்யப்படவில்லை). Step 2 token code commit `3e69dd3855e1576e7a5bdbfab1f1bd53f458af41`; Step 2 handoff/docs commit `f94c6cf6f0dea6d96a3aabe63f253551445e5ed6`.
+- Steps 2–4a branch: `feature/black-leather-royal-gold` (இன்னும் `main`-க்கு merge செய்யப்படவில்லை). Step 2 token code commit `3e69dd3855e1576e7a5bdbfab1f1bd53f458af41`; Step 2 handoff/docs commit `f94c6cf6f0dea6d96a3aabe63f253551445e5ed6`.
 - Step 3 Settings modal, `/settings`, `/keys` UI redesign: **code முடிந்தது** — [step-3-settings.md](step-3-settings.md); code commit `1b80712041b1be007147dfaedec83d045dd95f96`.
 - Step 3 app typecheck மற்றும் live UI preview: **சரிபார்க்க முடியவில்லை** — worktree-ல் `node_modules` இல்லை; Expo workflow `expo` executable இல்லாததால் தொடங்கவில்லை. Dependency/lockfile பிரச்சினைகளை மாற்றவில்லை.
-- அடுத்தது Step 4: Character list, edit, URL screens. அதற்கான code மாற்றங்களுக்கு முன் user-ன் வெளிப்படையான approval தேவை.
+- Step 4a Chat message/send/history: **முடிந்தது** — [step-4a-chat-messages-history.md](step-4a-chat-messages-history.md); code commit `e7d25367a9dfe98e64cb7094f2dda06f85855e2f` (feature branch மட்டும்).
+- Step 4a TypeScript TSX syntax parse மற்றும் diff whitespace check: **வெற்றி**; முழு app typecheck/device runtime: **சரிபார்க்க முடியவில்லை** — இந்த workspace-ல் app checkout மற்றும் Expo dependencies இல்லை.
+- அடுத்தது Step 4b: Character list, edit, URL screens. அதற்கான code மாற்றங்களுக்கு முன் user-ன் வெளிப்படையான approval தேவை.
 - ஆய்வு செய்த app source commit: `7a1fadc0a928b6975edecd1e8d646c67382ce0fb`.
 - Step 1 handoff commit-ல் `future/` ஆவணங்கள் மட்டும் சேர்க்கப்பட்டன; அப்போது app source/assets மாற்றப்படவில்லை.
 - Step 1-க்கு GitHub Action trigger செய்யப்படவில்லை.
@@ -19,13 +21,13 @@
 - ஏற்கெனவே உள்ள செயல்பாடுகள், integrations, handlers, API payloads, storage, notifications மற்றும் media flows-ஐ பாதுகாக்கவும்.
 - ஒவ்வொரு code phase-க்கும் முன் user-ன் வெளிப்படையான OK பெற வேண்டும்; OK வரும் வரை code மாற்றக்கூடாது.
 - User நேரடியாகக் கூறிய issue/error-ஐ மட்டுமே target ஆக எடுத்துக்கொள்ளவும். Screenshot-கள் துணை ஆதாரங்கள் மட்டுமே; அவற்றிலிருந்து user சொல்லாத error-ஐ ஊகிக்கவோ, screenshot-ஐ user-ன் விளக்கத்தை விட மேலானதாகக் கருதவோ கூடாது. Error அல்லது CI failure-ஐ ஊகிக்காமல், user சுட்டிக்காட்டிய issue-க்கு தொடர்புடைய எல்லா failure path-களையும் parallel-ஆ விசாரித்து verified காரணங்களையும் proposed fix-ஐயும் report செய்து, OK வரும் வரை காத்திருக்கவும்.
-- ஏழு திட்டமிட்ட படிகளுக்கான code changes-ஐ ஒரே feature branch-ல் வைத்திருக்கவும். இடைப்பட்ட phase/push-களுக்கு APK build செய்யக்கூடாது. ஏழு படிகளும் முடிந்து approval கிடைத்த பிறகு branch-ஐ `main`-க்கு merge செய்து, `main`-ல் இருந்து ஒரே `Build APK` workflow-ஐ கைமுறையாக trigger செய்யவும்.
+- திட்டமிட்ட app-code phases-ன் மாற்றங்களை ஒரே feature branch-ல் வைத்திருக்கவும். இடைப்பட்ட phase/push-களுக்கு APK build செய்யக்கூடாது. அனைத்து phases-ம் முடிந்து approval கிடைத்த பிறகு branch-ஐ `main`-க்கு merge செய்து, `main`-ல் இருந்து ஒரே `Build APK` workflow-ஐ கைமுறையாக trigger செய்யவும்.
 - Visual direction: Black Leather + Royal Gold + Sky Blue/Cyan Neon + subtle premium glassmorphism; deep charcoal backgrounds (#080B0D), gold for premium emphasis, cyan for interactive states, warm-white text, and readable Tamil copy.
 - `Build APK` workflow கைமுறையாக trigger செய்யப்படும்; அது APK-ஐ GitHub Release-ல் வெளியிடும். அதே tag-ஐ rerun செய்தால் அந்த release/tag-ஐ delete செய்து மீண்டும் உருவாக்கும்; Render redeploy இயல்பாக false. Trigger-க்கு முன் இந்த side effects-ஐ user-க்கு தெளிவுபடுத்தவும்.
 
-## Requested design brief — Black Leather + Royal Gold (Step 2 tokens and Step 3 UI complete; Steps 4–7 pending)
+## Requested design brief — Black Leather + Royal Gold (Step 2 tokens and Step 3 UI complete; Step 4a chat behavior complete; Step 4b and Steps 5–7 pending)
 
-புதிய இணைக்கப்பட்ட file-ன் விவரக்குறிப்பு, முந்தைய Black + Electric Purple brief-ஐ முழுமையாக மாற்றுகிறது. Step 2 shared theme-token foundation மற்றும் Step 3 Settings UI `feature/black-leather-royal-gold` branch-ல் உள்ளன. Steps 4–7-க்கு ஒவ்வொரு code phase-க்கும் முன் user-ன் வெளிப்படையான OK பெறவும்.
+புதிய இணைக்கப்பட்ட file-ன் விவரக்குறிப்பு, முந்தைய Black + Electric Purple brief-ஐ முழுமையாக மாற்றுகிறது. Step 2 shared theme-token foundation, Step 3 Settings UI, மற்றும் Step 4a Chat message/send/history behavior feature/black-leather-royal-gold branch-ல் உள்ளன. Step 4a-வில் எந்த app-screen redesign-மும் செய்யப்படவில்லை. Step 4b மற்றும் Steps 5–7-க்கு ஒவ்வொரு code phase-க்கும் முன் user-ன் வெளிப்படையான OK பெறவும்.
 
 
 ### Reference Images
@@ -725,8 +727,8 @@ Prioritize usability, premium visual hierarchy, accurate text alignment, and pre
 - ஒவ்வொரு step முடிந்ததும், `future/step-N-<சுருக்கப்பெயர்>.md` என்ற file-ல் முடிந்த scope, மாற்றிய files, verification/build முடிவு, commit SHA, blockers, அடுத்த step மற்றும் pending approval-களை பதிவு செய்யவும். Step 1-க்கு உள்ள `step-1-audit.md` பெயரிடும் முறையைப் பின்பற்றவும்.
 - `future/README.md`-ல் தற்போதைய status, முடிந்த step, அடுத்த step, அந்த step-க்கு தேவையான approval, தொடர்புடைய handoff file link ஆகியவற்றைப் புதுப்பிக்கவும். Verified evidence மட்டுமே குறிப்பிடவும்; secrets சேர்க்க வேண்டாம்.
 - Handoff docs-ஐ GitHub-க்கு normal commit/push ஆகச் சேர்க்கவும்; இது `Build APK` workflow-ஐ trigger செய்யும் முறை அல்ல. Docs-only update-க்கு APK build தேவையில்லை.
-- Code changes-ஐ ஒரே feature branch-ல் commit/push செய்யவும். ஏழு திட்டமிட்ட படிகளும் முடிந்து approval கிடைத்த பிறகே அந்த branch-ஐ `main`-க்கு merge செய்யவும்; பின்னர் `main`-இலிருந்து `Build APK`-ஐ ஒரே முறை கைமுறையாக trigger செய்யவும். இடைப்பட்ட build-கள் செய்ய வேண்டாம்.
+- Code changes-ஐ ஒரே feature branch-ல் commit/push செய்யவும். திட்டமிட்ட app-code phases அனைத்தும் முடிந்து approval கிடைத்த பிறகே அந்த branch-ஐ `main`-க்கு merge செய்யவும்; பின்னர் `main`-இலிருந்து `Build APK`-ஐ ஒரே முறை கைமுறையாக trigger செய்யவும். இடைப்பட்ட build-கள் செய்ய வேண்டாம்.
 - Build trigger-க்கு முன் Release side effect-ஐ தெரிவிக்கவும்: workflow APK-ஐ GitHub Release-ல் வெளியிடும்; அதே tag-ஐ rerun செய்தால் ஏற்கெனவே உள்ள release/tag-ஐ delete செய்து மீண்டும் உருவாக்கும். Render redeploy input இயல்பாக false.
 
 ## அடுத்த நிலை
-Step 3 Settings modal, `/settings`, `/keys` UI code முடிந்தது — [step-3-settings.md](step-3-settings.md)-ல் விவரங்கள் மற்றும் சரிபார்ப்பு வரம்புகள் உள்ளன. அடுத்தது Step 4: Character list, edit, URL screens; தொடங்குவதற்கு முன் user-ன் வெளிப்படையான OK பெறவும். ஏழு கட்ட பரிந்துரை மற்றும் உறுதிப்படுத்தப்பட்ட route/handler map `step-1-audit.md`-ல் உள்ளது.
+Step 4a Chat message/send/history behavior முடிந்தது — [step-4a-chat-messages-history.md](step-4a-chat-messages-history.md)-ல் scope மற்றும் சரிபார்ப்பு வரம்புகள் உள்ளன. அடுத்தது Step 4b: Character list, edit, URL screens; தொடங்குவதற்கு முன் user-ன் வெளிப்படையான OK பெறவும். கட்டப் பரிந்துரை மற்றும் உறுதிப்படுத்தப்பட்ட route/handler map `step-1-audit.md`-ல் உள்ளது.
