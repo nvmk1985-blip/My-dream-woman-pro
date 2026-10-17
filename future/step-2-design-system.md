@@ -28,3 +28,12 @@
 
 ## அடுத்த படி
 Step 3: Settings modal, `/settings`, `/keys` ஆகியவற்றின் UI-only redesign. இது தனி code phase; user-ன் வெளிப்படையான approval கிடைக்கும் வரை தொடங்கக்கூடாது.
+
+
+## Design board and app-icon concept exports (2026-10-17)
+
+- A visual, scrollable design-system board was presented in the Replit Design canvas. It demonstrates the current branch palette, Tamil typography, spacing/effects, reusable card/button/input/toggle/interval/PIN-sheet patterns, semantic status badges, and loading/ready/empty/error media states. The preview was checked at desktop and phone viewport sizes; the mockup-sandbox TypeScript check passed.
+- Reference images used: `future/references/chat-image-studio-premium.jpeg` and `future/references/storage-hub-pin-interval-premium.jpeg`.
+- Implementation guidance: [`docs/AGENTS.md`](../docs/AGENTS.md); design notes and token export: [`docs/design-system/README.md`](../docs/design-system/README.md), [`tokens.json`](../docs/design-system/tokens.json). Runtime tokens remain in `artifacts/tamil-ai-chat/constants/colors.ts` and `hooks/useColors.ts`.
+- App icon concept files are under `docs/design-system/assets/`: editable SVG master, 1024 PNG, and Android adaptive foreground/background SVG+PNG exports. These are design exports only; they were not connected to `app.json`, runtime app assets, splash/notification icons, or the APK workflow.
+- These design-only files do not change app screens, app handlers, dependencies, or lockfiles. No GitHub Actions workflow was manually triggered. The full app build/device preview remains unverified as noted above.
