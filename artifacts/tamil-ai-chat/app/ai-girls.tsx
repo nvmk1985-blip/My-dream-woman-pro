@@ -28,6 +28,11 @@ import { uploadToCloudinary, imageToPrompt, createCloudinaryFolder, getCloudinar
 import { requestPhotoVideoPermissionsAsync } from '../services/media-permissions';
 import { Platform } from 'react-native';
 import * as FileSystem from 'expo-file-system';
+import { Ionicons } from '@expo/vector-icons';
+import themeTokens from '../constants/colors';
+import { useColors } from '../hooks/useColors';
+
+const C = themeTokens.dark;
 
 const STYLE_TO_PROMPT: Record<string, string> = {
   breast: 'topless, showing breasts, bare chest',
@@ -59,6 +64,14 @@ export const RINGTONES = [
   { id: 'silent',    label: 'Silent',         emoji: '🔕' },
 ] as const;
 export type RingtoneId = typeof RINGTONES[number]['id'];
+const RINGTONE_ICONS: Record<string, React.ComponentProps<typeof Ionicons>['name']> = {
+  classic: 'notifications-outline',
+  whatsapp: 'chatbubble-ellipses-outline',
+  melody: 'musical-notes-outline',
+  cute: 'musical-note-outline',
+  alert: 'alert-circle-outline',
+  silent: 'notifications-off-outline',
+};
 
 export function playRingtone(id: string) {
   if (id === 'silent' || typeof window === 'undefined') return;
@@ -112,6 +125,7 @@ const Toggle = ({ value, onToggle }: { value: boolean; onToggle: () => void }) =
 const KEYS = ['1','2','3','4','5','6','7','8','9','','0','⌫'];
 
 export default function AIGirlsScreen() {
+  const colors = useColors();
   const router = useRouter();
   const { action } = useLocalSearchParams<{ action?: string }>();
   const routedActionRef = useRef<string | null>(null);
@@ -1258,7 +1272,10 @@ Then write these prompts:
           <TouchableOpacity style={{ flex: 1 }} activeOpacity={1} onPress={() => setShowSettings(false)} />
           <View style={[s.settingsSheet, { paddingBottom: insets.bottom + 8 }]}>
             <View style={s.settingsHandle} />
-            <Text style={s.settingsTitle}>⚙️ Settings</Text>
+            <View style={s.settingsTitleRow}>
+              <Ionicons name="settings-outline" size={20} color={colors.goldPrimary} />
+              <Text style={s.settingsTitle}>Settings</Text>
+            </View>
 
             <ScrollView showsVerticalScrollIndicator={false} style={{ maxHeight: '85%' }}>
 
@@ -1266,7 +1283,10 @@ Then write these prompts:
               <View style={s.settingsSection}>
                 <View style={s.settingsRow}>
                   <View style={{ flex: 1 }}>
-                    <Text style={s.settingsRowTitle}>🌐 Online Mode</Text>
+                    <View style={s.settingsRowHeading}>
+                      <Ionicons name="globe-outline" size={17} color={colors.cyanPrimary} />
+                      <Text style={s.settingsRowTitle}>Online Mode</Text>
+                    </View>
                     <Text style={s.settingsRowSub}>
                       {isOnline ? 'Gemini API வழியா chat' : 'Offline / Gemma mode'}
                     </Text>
@@ -1279,16 +1299,19 @@ Then write these prompts:
               <View style={s.settingsSection}>
                 <View style={s.settingsRow}>
                   <View style={{ flex: 1 }}>
-                    <Text style={s.settingsRowTitle}>💬 Auto Message</Text>
+                    <View style={s.settingsRowHeading}>
+                      <Ionicons name="chatbubble-ellipses-outline" size={17} color={colors.cyanPrimary} />
+                      <Text style={s.settingsRowTitle}>Auto Message</Text>
+                    </View>
                     <Text style={s.settingsRowSub}>
                       App close ஆனாலும் push notification வரும்
                     </Text>
                     {autoMsgEnabled && (
                       <View style={s.pushStatusRow}>
-                        {pushStatus === 'active'      && <Text style={[s.pushBadge, { backgroundColor: '#1B5E20' }]}>🔔 Notifications Active</Text>}
-                        {pushStatus === 'subscribing' && <Text style={[s.pushBadge, { backgroundColor: '#E65100' }]}>⏳ Enabling...</Text>}
-                        {pushStatus === 'denied'      && <Text style={[s.pushBadge, { backgroundColor: '#B71C1C' }]}>🔕 Permission Denied — Edge Settings-ல் allow பண்ணுங்க</Text>}
-                        {pushStatus === 'unsupported' && <Text style={[s.pushBadge, { backgroundColor: '#555' }]}>⚠️ This browser doesn't support push</Text>}
+                        {pushStatus === 'active'      && <Text style={[s.pushBadge, { backgroundColor: colors.success }]}>🔔 Notifications Active</Text>}
+                        {pushStatus === 'subscribing' && <Text style={[s.pushBadge, { backgroundColor: colors.warning }]}>⏳ Enabling...</Text>}
+                        {pushStatus === 'denied'      && <Text style={[s.pushBadge, { backgroundColor: colors.error }]}>🔕 Permission Denied — Edge Settings-ல் allow பண்ணுங்க</Text>}
+                        {pushStatus === 'unsupported' && <Text style={[s.pushBadge, { backgroundColor: colors.textMuted }]}>⚠️ This browser doesn't support push</Text>}
                       </View>
                     )}
                   </View>
@@ -1331,7 +1354,10 @@ Then write these prompts:
 
               {/* 3. Gemma AI */}
               <View style={s.settingsSection}>
-                <Text style={s.settingsRowTitle}>🧠 Gemma AI (Offline)</Text>
+                <View style={s.settingsRowHeading}>
+                  <Ionicons name="hardware-chip-outline" size={17} color={colors.cyanPrimary} />
+                  <Text style={s.settingsRowTitle}>Gemma AI (Offline)</Text>
+                </View>
                 <View style={s.gemmaStatusRow}>
                   {isWebGPUSupported()
                     ? isModelCached()
@@ -1344,7 +1370,10 @@ Then write these prompts:
 
               {/* 4. Ringtone */}
               <View style={s.settingsSection}>
-                <Text style={s.settingsRowTitle}>🔔 Notification Ringtone</Text>
+                <View style={s.settingsRowHeading}>
+                  <Ionicons name="notifications-outline" size={17} color={colors.cyanPrimary} />
+                  <Text style={s.settingsRowTitle}>Notification Ringtone</Text>
+                </View>
                 <Text style={s.settingsRowSub}>Auto-message வரும்போது play ஆகும்</Text>
                 <View style={s.ringtoneGrid}>
                   {RINGTONES.map(r => (
@@ -1353,11 +1382,15 @@ Then write these prompts:
                       style={[s.ringtoneBtn, ringtone === r.id && s.ringtoneBtnActive]}
                       onPress={() => pickRingtone(r.id)}
                     >
-                      <Text style={s.ringtoneEmoji}>{r.emoji}</Text>
+                      <Ionicons
+                        name={RINGTONE_ICONS[r.id]}
+                        size={16}
+                        color={ringtone === r.id ? colors.cyanBright : colors.textTertiary}
+                      />
                       <Text style={[s.ringtoneTxt, ringtone === r.id && s.ringtoneTxtActive]}>
                         {r.label}
                       </Text>
-                      {ringtone === r.id && <Text style={s.ringtoneCheck}>✓</Text>}
+                      {ringtone === r.id && <Ionicons name="checkmark" size={14} color={colors.cyanBright} />}
                     </TouchableOpacity>
                   ))}
                 </View>
@@ -1365,17 +1398,26 @@ Then write these prompts:
 
               {/* 5. PIN Lock */}
               <View style={s.settingsSection}>
-                <Text style={s.settingsRowTitle}>🔒 App PIN Lock</Text>
+                <View style={s.settingsRowHeading}>
+                  <Ionicons name="lock-closed-outline" size={17} color={colors.goldPrimary} />
+                  <Text style={s.settingsRowTitle}>App PIN Lock</Text>
+                </View>
                 <Text style={s.settingsRowSub}>
                   {existingPin ? '✅ PIN set ஆகிருக்கு — மற்றவங்க திறக்க முடியாது' : 'PIN இல்லை — யாரும் திறக்கலாம்'}
                 </Text>
                 <View style={{ flexDirection: 'row', gap: 10, marginTop: 10 }}>
                   <TouchableOpacity style={s.pinBtn} onPress={openPinSetup}>
-                    <Text style={s.pinBtnTxt}>{existingPin ? '🔄 PIN மாத்து' : '🔒 PIN Set பண்ணு'}</Text>
+                    <View style={s.inlineButtonContent}>
+                      <Ionicons name={existingPin ? 'key-outline' : 'lock-closed-outline'} size={16} color={colors.textOnGold} />
+                      <Text style={s.pinBtnTxt}>{existingPin ? 'PIN மாத்து' : 'PIN Set பண்ணு'}</Text>
+                    </View>
                   </TouchableOpacity>
                   {existingPin && (
-                    <TouchableOpacity style={[s.pinBtn, { backgroundColor: '#fdecea' }]} onPress={removePin}>
-                      <Text style={[s.pinBtnTxt, { color: '#c62828' }]}>🗑 Remove</Text>
+                    <TouchableOpacity style={[s.pinBtn, s.pinRemoveBtn]} onPress={removePin}>
+                      <View style={s.inlineButtonContent}>
+                        <Ionicons name="trash-outline" size={16} color={colors.error} />
+                        <Text style={[s.pinBtnTxt, s.pinRemoveTxt]}>Remove</Text>
+                      </View>
                     </TouchableOpacity>
                   )}
                 </View>
@@ -1384,11 +1426,18 @@ Then write these prompts:
             </ScrollView>
 
             <TouchableOpacity style={s.keysShortcut} onPress={() => { setShowSettings(false); router.push('/keys'); }}>
-              <Text style={s.keysShortcutTxt}>🔑 Keys & Accounts</Text>
+              <View style={s.inlineButtonContent}>
+                <Ionicons name="key-outline" size={17} color={colors.goldBright} />
+                <Text style={s.keysShortcutTxt}>Keys & Accounts</Text>
+                <Ionicons name="arrow-forward" size={16} color={colors.goldBright} />
+              </View>
             </TouchableOpacity>
 
             <TouchableOpacity style={s.settingsClose} onPress={() => setShowSettings(false)}>
-              <Text style={s.settingsCloseTxt}>✓ Done</Text>
+              <View style={s.inlineButtonContent}>
+                <Ionicons name="checkmark-circle-outline" size={18} color={colors.textOnGold} />
+                <Text style={s.settingsCloseTxt}>Done</Text>
+              </View>
             </TouchableOpacity>
           </View>
         </View>
@@ -1399,9 +1448,12 @@ Then write these prompts:
         onRequestClose={() => setShowPinSetup(false)}>
         <View style={s.pinOverlay}>
           <View style={s.pinBox}>
-            <Text style={s.pinTitle}>
-              {pinStep === 'set' ? '🔒 New PIN Set பண்ணு' : '🔒 PIN Confirm பண்ணு'}
-            </Text>
+            <View style={s.pinTitleRow}>
+              <Ionicons name="lock-closed-outline" size={19} color={colors.goldPrimary} />
+              <Text style={s.pinTitle}>
+                {pinStep === 'set' ? 'New PIN Set பண்ணு' : 'PIN Confirm பண்ணு'}
+              </Text>
+            </View>
             <Text style={s.pinSub}>4 digits enter பண்ணுங்க</Text>
 
             {/* 4 dots */}
@@ -1795,7 +1847,7 @@ const s = StyleSheet.create({
   statusOffline: { backgroundColor: '#B71C1C' },
   statusPillTxt: { color: '#fff', fontSize: 11, fontWeight: '600' },
   pushStatusRow: { marginTop: 6 },
-  pushBadge: { color: '#fff', fontSize: 11, fontWeight: '600', paddingHorizontal: 8, paddingVertical: 4, borderRadius: 8, alignSelf: 'flex-start' },
+  pushBadge: { color: C.textOnCyan, fontSize: 11, fontWeight: '700', paddingHorizontal: 8, paddingVertical: 4, borderRadius: 8, alignSelf: 'flex-start' },
 
   loadingWrap: { flex: 1, justifyContent: 'center', alignItems: 'center' },
 
@@ -1862,24 +1914,31 @@ const s = StyleSheet.create({
   overlay: { flex: 1, backgroundColor: 'rgba(0,0,0,0.5)', justifyContent: 'center', alignItems: 'center' },
 
   // ── Settings Sheet ──
-  settingsOverlay: { flex: 1, backgroundColor: 'rgba(0,0,0,0.45)', justifyContent: 'flex-end' },
+  settingsOverlay: { flex: 1, backgroundColor: C.overlay, justifyContent: 'flex-end' },
   settingsSheet: {
-    backgroundColor: '#fff', borderTopLeftRadius: 24, borderTopRightRadius: 24,
+    backgroundColor: C.leatherBlack, borderTopLeftRadius: 26, borderTopRightRadius: 26,
     paddingTop: 12, paddingHorizontal: 20, paddingBottom: 0,
-    maxHeight: '80%',
+    maxHeight: '88%', borderWidth: 1, borderColor: C.glassGoldBorder,
+    borderBottomWidth: 0,
   },
   settingsHandle: {
-    width: 40, height: 4, backgroundColor: '#ddd', borderRadius: 2,
-    alignSelf: 'center', marginBottom: 14,
+    width: 42, height: 4, backgroundColor: C.textMuted, borderRadius: 2,
+    alignSelf: 'center', marginBottom: 16,
   },
-  settingsTitle: { fontSize: 20, fontWeight: 'bold', color: '#111', marginBottom: 16 },
+  settingsTitleRow: {
+    flexDirection: 'row', alignItems: 'center', gap: 9,
+    marginBottom: 14, paddingBottom: 12, borderBottomWidth: 1, borderBottomColor: C.borderSubtle,
+  },
+  settingsTitle: { fontSize: 20, fontWeight: '700', color: C.textPrimary },
   settingsSection: {
-    borderBottomWidth: 1, borderBottomColor: '#f0f0f0',
-    paddingVertical: 16,
+    backgroundColor: C.card, borderWidth: 1, borderColor: C.borderSubtle,
+    borderRadius: 16, padding: 14, marginBottom: 10,
   },
   settingsRow: { flexDirection: 'row', alignItems: 'center', gap: 12 },
-  settingsRowTitle: { fontSize: 15, fontWeight: '700', color: '#111', marginBottom: 3 },
-  settingsRowSub: { fontSize: 12, color: '#777' },
+  settingsRowHeading: { flexDirection: 'row', alignItems: 'center', gap: 8, marginBottom: 3 },
+  settingsRowTitle: { fontSize: 15, fontWeight: '700', color: C.textPrimary },
+  settingsRowSub: { fontSize: 12, color: C.textTertiary, lineHeight: 18 },
+  inlineButtonContent: { flexDirection: 'row', alignItems: 'center', justifyContent: 'center', gap: 8 },
 
   // ── Custom Toggle ──
   toggle: {
@@ -1887,37 +1946,38 @@ const s = StyleSheet.create({
     flexDirection: 'row', alignItems: 'center',
     paddingHorizontal: 4, overflow: 'hidden',
   },
-  toggleOn: { backgroundColor: '#25D366' },
-  toggleOff: { backgroundColor: '#EF5350' },
+  toggleOn: { backgroundColor: C.buttonCyan },
+  toggleOff: { backgroundColor: C.error },
   toggleDot: {
-    width: 28, height: 28, borderRadius: 14, backgroundColor: '#fff',
+    width: 28, height: 28, borderRadius: 14, backgroundColor: C.textPrimary,
     elevation: 2, shadowColor: '#000', shadowOpacity: 0.2, shadowRadius: 3, shadowOffset: { width: 0, height: 1 },
   },
   toggleDotRight: { marginLeft: 'auto' as any },
   toggleDotLeft: { marginRight: 'auto' as any },
-  toggleLabel: { color: '#fff', fontSize: 11, fontWeight: '800', marginRight: 2 },
+  toggleLabel: { color: C.textOnCyan, fontSize: 11, fontWeight: '800', marginRight: 2 },
 
   // ── Auto-message intervals ──
   intervalList: { marginTop: 14, gap: 10 },
-  intervalHeading: { fontSize: 13, fontWeight: '700', color: '#444', marginBottom: 4 },
+  intervalHeading: { fontSize: 13, fontWeight: '700', color: C.textSecondary, marginBottom: 4 },
   intervalRow: {
     flexDirection: 'row', alignItems: 'center', gap: 8,
-    backgroundColor: '#f9f9f9', borderRadius: 10, padding: 8,
+    backgroundColor: C.cardSecondary, borderWidth: 1, borderColor: C.borderSubtle,
+    borderRadius: 12, padding: 8,
   },
   intervalAvatar: { width: 32, height: 32, borderRadius: 16, justifyContent: 'center', alignItems: 'center' },
   intervalAvatarImg: { width: 32, height: 32, borderRadius: 16 },
   intervalAvatarTxt: { color: '#fff', fontSize: 12, fontWeight: 'bold' },
-  intervalName: { flex: 1, fontSize: 13, fontWeight: '600', color: '#333' },
+  intervalName: { flex: 1, fontSize: 13, fontWeight: '600', color: C.textPrimary },
   intervalBtns: { flexDirection: 'row', gap: 4 },
   ivBtn: {
     paddingHorizontal: 8, paddingVertical: 5, borderRadius: 8,
-    borderWidth: 1, borderColor: '#ddd', backgroundColor: '#fff',
+    borderWidth: 1, borderColor: C.border, backgroundColor: C.bgSecondary,
   },
-  ivBtnActive: { backgroundColor: '#075E54', borderColor: '#075E54' },
-  ivBtnOff: { backgroundColor: '#ffebee', borderColor: '#ef9a9a' },
-  ivBtnTxt: { fontSize: 11, fontWeight: '700', color: '#555' },
-  ivBtnTxtActive: { color: '#fff' },
-  ivBtnOffTxt: { color: '#c62828' },
+  ivBtnActive: { backgroundColor: C.buttonCyan, borderColor: C.cyanPrimary },
+  ivBtnOff: { backgroundColor: C.buttonDisabled, borderColor: C.border },
+  ivBtnTxt: { fontSize: 11, fontWeight: '700', color: C.textSecondary },
+  ivBtnTxtActive: { color: C.textOnCyan },
+  ivBtnOffTxt: { color: C.textTertiary },
 
   // ── Ringtone picker ──
   ringtoneGrid: {
@@ -1926,57 +1986,58 @@ const s = StyleSheet.create({
   ringtoneBtn: {
     flexDirection: 'row', alignItems: 'center', gap: 6,
     paddingHorizontal: 12, paddingVertical: 9,
-    borderRadius: 20, borderWidth: 1.5, borderColor: '#ddd',
-    backgroundColor: '#fafafa',
+    borderRadius: 20, borderWidth: 1.5, borderColor: C.border,
+    backgroundColor: C.cardSecondary,
   },
   ringtoneBtnActive: {
-    borderColor: '#075E54', backgroundColor: '#e8f5e9',
+    borderColor: C.cyanBorder, backgroundColor: C.cyanSoft,
   },
-  ringtoneEmoji: { fontSize: 16 },
-  ringtoneTxt: { fontSize: 12, fontWeight: '600', color: '#555' },
-  ringtoneTxtActive: { color: '#075E54' },
-  ringtoneCheck: { fontSize: 12, color: '#075E54', fontWeight: '900', marginLeft: 2 },
+  ringtoneTxt: { fontSize: 12, fontWeight: '600', color: C.textSecondary },
+  ringtoneTxtActive: { color: C.textCyan },
 
   // ── Gemma status ──
-  gemmaStatusRow: { marginTop: 8, padding: 10, backgroundColor: '#f5f5f5', borderRadius: 10 },
-  gemmaStatusOk: { color: '#2e7d32', fontSize: 13, fontWeight: '600' },
-  gemmaStatusWarn: { color: '#e65100', fontSize: 13 },
-  gemmaStatusErr: { color: '#c62828', fontSize: 13 },
+  gemmaStatusRow: { marginTop: 8, padding: 10, backgroundColor: C.bgSecondary, borderRadius: 10, borderWidth: 1, borderColor: C.borderSubtle },
+  gemmaStatusOk: { color: C.success, fontSize: 13, fontWeight: '600' },
+  gemmaStatusWarn: { color: C.warning, fontSize: 13 },
+  gemmaStatusErr: { color: C.error, fontSize: 13 },
 
   // ── PIN in settings ──
   pinBtn: {
-    flex: 1, backgroundColor: '#e8f5e9', borderRadius: 10,
+    flex: 1, backgroundColor: C.buttonGold, borderRadius: 10,
     paddingVertical: 12, alignItems: 'center',
   },
-  pinBtnTxt: { color: '#075E54', fontWeight: '700', fontSize: 14 },
+  pinBtnTxt: { color: C.textOnGold, fontWeight: '700', fontSize: 14 },
+  pinRemoveBtn: { backgroundColor: C.cardSecondary, borderWidth: 1, borderColor: C.error },
+  pinRemoveTxt: { color: C.error },
 
   keysShortcut: {
-    backgroundColor: '#FEF3C7', borderRadius: 12,
+    backgroundColor: C.cardSecondary, borderRadius: 12,
     paddingVertical: 13, alignItems: 'center', marginTop: 12,
-    borderWidth: 1, borderColor: '#F59E0B',
+    borderWidth: 1, borderColor: C.glassGoldBorder,
   },
-  keysShortcutTxt: { color: '#92400E', fontSize: 15, fontWeight: 'bold' },
+  keysShortcutTxt: { color: C.goldBright, fontSize: 15, fontWeight: 'bold' },
   settingsClose: {
-    backgroundColor: '#075E54', borderRadius: 14,
+    backgroundColor: C.buttonGold, borderRadius: 14,
     paddingVertical: 15, alignItems: 'center', marginVertical: 10,
   },
-  settingsCloseTxt: { color: '#fff', fontSize: 16, fontWeight: 'bold' },
+  settingsCloseTxt: { color: C.textOnGold, fontSize: 16, fontWeight: 'bold' },
 
   // ── PIN setup modal ──
-  pinOverlay: { flex: 1, backgroundColor: 'rgba(0,0,0,0.75)', justifyContent: 'center', alignItems: 'center', padding: 24 },
-  pinBox: { backgroundColor: '#fff', borderRadius: 24, padding: 28, width: '100%', alignItems: 'center' },
-  pinTitle: { fontSize: 18, fontWeight: 'bold', color: '#111', marginBottom: 6, textAlign: 'center' },
-  pinSub: { fontSize: 13, color: '#777', marginBottom: 24, textAlign: 'center' },
+  pinOverlay: { flex: 1, backgroundColor: C.overlay, justifyContent: 'center', alignItems: 'center', padding: 24 },
+  pinBox: { backgroundColor: C.leatherBlack, borderWidth: 1, borderColor: C.glassGoldBorder, borderRadius: 24, padding: 28, width: '100%', alignItems: 'center' },
+  pinTitleRow: { flexDirection: 'row', alignItems: 'center', justifyContent: 'center', gap: 8, marginBottom: 6 },
+  pinTitle: { fontSize: 18, fontWeight: 'bold', color: C.textPrimary, textAlign: 'center' },
+  pinSub: { fontSize: 13, color: C.textTertiary, marginBottom: 24, textAlign: 'center' },
   pinDots: { flexDirection: 'row', gap: 18, marginBottom: 16 },
-  pinDot: { width: 18, height: 18, borderRadius: 9, borderWidth: 2, borderColor: '#aaa', backgroundColor: '#fff' },
-  pinDotFilled: { backgroundColor: '#075E54', borderColor: '#075E54' },
-  pinMsg: { fontSize: 13, color: '#c62828', marginBottom: 14, textAlign: 'center' },
+  pinDot: { width: 18, height: 18, borderRadius: 9, borderWidth: 2, borderColor: C.border, backgroundColor: C.bgSecondary },
+  pinDotFilled: { backgroundColor: C.goldPrimary, borderColor: C.goldPrimary },
+  pinMsg: { fontSize: 13, color: C.error, marginBottom: 14, textAlign: 'center' },
   numpad: { flexDirection: 'row', flexWrap: 'wrap', width: 240, gap: 10, justifyContent: 'center', marginBottom: 16 },
   numKey: { width: 68, height: 56, borderRadius: 14, justifyContent: 'center', alignItems: 'center' },
-  numKeyActive: { backgroundColor: '#f0f0f0', elevation: 1 },
-  numKeyTxt: { fontSize: 22, fontWeight: '600', color: '#111' },
+  numKeyActive: { backgroundColor: C.cardSecondary, borderWidth: 1, borderColor: C.borderSubtle, elevation: 1 },
+  numKeyTxt: { fontSize: 22, fontWeight: '600', color: C.textPrimary },
   pinCancelBtn: { paddingVertical: 10, paddingHorizontal: 24 },
-  pinCancelTxt: { color: '#888', fontSize: 14, fontWeight: '600' },
+  pinCancelTxt: { color: C.textTertiary, fontSize: 14, fontWeight: '600' },
 
   // ── Edit Relationship ──
   editBox: { backgroundColor: '#fff', borderRadius: 20, padding: 24, width: '88%' },
