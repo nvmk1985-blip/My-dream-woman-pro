@@ -1558,7 +1558,7 @@ Then write these prompts:
               ) : null}
             </View>
             <TouchableOpacity
-              style={[s.scriptCopyBtn, scriptCopied && { backgroundColor:'#15803d' }]}
+              style={[s.scriptCopyBtn, scriptCopied && { backgroundColor: colors.success }]}
               onPress={async () => {
                 if (!scriptText) return;
                 try {
@@ -1582,7 +1582,7 @@ Then write these prompts:
           <ScrollView style={s.scriptScroll} contentContainerStyle={{ padding:16, paddingBottom:40 }}>
             {scriptLoading ? (
               <View style={s.scriptLoading}>
-                <ActivityIndicator size="large" color="#7C3AED" />
+                <ActivityIndicator size="large" color={colors.cyanPrimary} />
                 <Text style={s.scriptLoadTxt}>{scriptText || '📸 Image analyze பண்றேன்...'}</Text>
                 <View style={s.scriptModelRow}>
                   <Text style={s.scriptModelStep}>All 13 Gemini keys auto-retry</Text>
@@ -1599,7 +1599,7 @@ Then write these prompts:
               <Text style={s.scriptNewTxt}>🖼️ New Photo</Text>
             </TouchableOpacity>
             <TouchableOpacity
-              style={[s.scriptCopyFooterBtn, scriptCopied && { backgroundColor:'#15803d' }]}
+              style={[s.scriptCopyFooterBtn, scriptCopied && { backgroundColor: colors.success }]}
               onPress={async () => {
                 if (!scriptText) return;
                 try {
@@ -1920,32 +1920,46 @@ const s = StyleSheet.create({
   fabScriptImg: { width: 28, height: 28, borderRadius: 6 },
 
   // ── Photo to Script Modal ──
-  scriptSafe: { flex: 1, backgroundColor: '#0f0f1a' },
+  scriptSafe: { flex: 1, backgroundColor: C.bgPrimary },
   scriptHeader: {
     flexDirection: 'row', alignItems: 'center', justifyContent: 'space-between',
     paddingHorizontal: 14, paddingVertical: 12,
-    borderBottomWidth: 1, borderBottomColor: '#1f2937',
+    borderBottomWidth: 1, borderBottomColor: C.borderSubtle,
   },
   scriptBack: { padding: 6 },
-  scriptBackTxt: { color: '#9ca3af', fontSize: 18, fontWeight: '700' },
+  scriptBackTxt: { color: C.textTertiary, fontSize: 18, fontWeight: '700' },
   scriptHeaderIcon: { width: 28, height: 28, borderRadius: 6 },
-  scriptHeaderTitle: { color: '#e9d5ff', fontSize: 16, fontWeight: '800' },
+  scriptHeaderTitle: { color: C.goldLight, fontSize: 16, fontWeight: '800' },
   scriptCopyBtn: {
-    backgroundColor: '#4A1D96', borderRadius: 10,
+    backgroundColor: C.buttonGold, borderRadius: 10,
     paddingHorizontal: 12, paddingVertical: 6,
   },
-  scriptCopyTxt: { color: '#fff', fontSize: 12, fontWeight: '700' },
+  scriptCopyTxt: { color: C.textOnGold, fontSize: 12, fontWeight: '700' },
   scriptPreviewImg: { width: '100%', height: 180 },
   scriptScroll: { flex: 1 },
   scriptLoading: { alignItems: 'center', paddingTop: 40, gap: 12 },
-  scriptLoadTxt: { color: '#c4b5fd', fontSize: 15, fontWeight: '600', marginTop: 8 },
-  scriptBody: { color: '#e5e7eb', fontSize: 14, lineHeight: 22 },
-  scriptFooter: { padding: 14, borderTopWidth: 1, borderTopColor: '#1f2937' },
+  scriptLoadTxt: { color: C.goldLight, fontSize: 15, fontWeight: '600', marginTop: 8 },
+  scriptBody: { color: C.textSecondary, fontSize: 14, lineHeight: 22 },
+  scriptFooter: {
+    flexDirection: 'row', gap: 10, padding: 14,
+    borderTopWidth: 1, borderTopColor: C.borderSubtle,
+  },
+  scriptNewBtn: {
+    flex: 1, backgroundColor: C.buttonSecondary, borderRadius: 12,
+    paddingVertical: 12, alignItems: 'center', justifyContent: 'center',
+    borderWidth: 1, borderColor: C.border,
+  },
+  scriptNewTxt: { color: C.textSecondary, fontSize: 14, fontWeight: '700' },
+  scriptCopyFooterBtn: {
+    flex: 1, backgroundColor: C.buttonGold, borderRadius: 12,
+    paddingVertical: 12, alignItems: 'center', justifyContent: 'center',
+  },
+  scriptCopyFooterTxt: { color: C.textOnGold, fontSize: 14, fontWeight: '800' },
   scriptRetryBtn: {
-    backgroundColor: '#1f2937', borderRadius: 12, borderWidth: 1, borderColor: '#374151',
+    backgroundColor: C.cardSecondary, borderRadius: 12, borderWidth: 1, borderColor: C.border,
     paddingVertical: 12, alignItems: 'center',
   },
-  scriptRetryTxt: { color: '#9ca3af', fontSize: 14, fontWeight: '600' },
+  scriptRetryTxt: { color: C.textTertiary, fontSize: 14, fontWeight: '600' },
 
   overlay: { flex: 1, backgroundColor: C.overlay, justifyContent: 'center', alignItems: 'center' },
 
