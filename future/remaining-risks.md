@@ -36,3 +36,34 @@
 - **எந்த check-இல் கண்டறிந்தது:** Step 7 — Theme Tokens Check; runtime `colors.ts`-ஐ design token JSON-உடன் ஒப்பிட்டபோது.
 - **மீதமுள்ள ஆபத்து:** `colors.ts`-ல் 55 தனித்துவமான நிற மதிப்புகள் உள்ளன; `tokens.json`-ல் 30 மட்டுமே உள்ளன. JSON-ல் உள்ள மதிப்புகள் runtime source-ல் உள்ளன; ஆனால் 25 தனித்துவமான runtime நிற மதிப்புகள் JSON-ல் விடுபட்டுள்ளன. `docs/design-system/README.md`-ல் JSON தற்போதைய `useColors()` மதிப்புகளின் export எனக் குறிப்பிடப்படுவதால், design export முழுமையற்றதாக இருக்கலாம்.
 - **சரிசெய்ய வேண்டிய கோப்பு/பகுதி:** `docs/design-system/tokens.json` — விடுபட்ட palette values சேர்க்க; `docs/design-system/README.md` — முழு export அல்ல என்றால் அதன் scope-ஐத் தெளிவுபடுத்த.
+
+## 6. Workflow & Release Protection Check
+
+- **எந்த check-இல் கண்டறிந்தது:** Step 7 — Workflow & Release Protection Check; `.github/workflows/build-apk.yml`, app settings, API config route ஆகியவற்றை source-level-ல் ஆய்வு செய்தபோது.
+- **ஆய்வு வரம்பு:** workflow இயக்கப்படவில்லை; release அல்லது deployment உருவாக்கப்படவில்லை. Branch protection API-ஐச் சரிபார்க்கும்போது GitHub `401 Requires authentication` கொடுத்ததால், protection rules உள்ளதா என்பது உறுதிப்படுத்தப்படவில்லை.
+
+### 6.1 Release மறுஇயக்கத்தில் ஏற்கனவே உள்ள release/tag நீக்கப்படலாம்
+
+- **மீதமுள்ள ஆபத்து:** workflow `contents: write` permission-ஐக் கோருகிறது. APK வெளியிடுவதற்கு முன் அதே tag இருந்தால் `gh release delete "$TAG" --yes --cleanup-tag` அதை நீக்குகிறது. அதே run-ஐ rerun செய்தால் tag மீண்டும் பயன்படுத்தப்படலாம்; பின்னர் release creation தோல்வியடைந்தால் பழைய release/APK ஏற்கனவே நீக்கப்பட்டிருக்கும்.
+- **சரிசெய்ய வேண்டிய கோப்பு/பகுதி:** `.github/workflows/build-apk.yml` — `Publish APK via GitHub Release` படி மற்றும் release overwrite நடத்தை.
+
+### 6.2 App-இன் GitHub repo target, ஆய்வு செய்யச் சொன்ன repo-வுடன் பொருந்தவில்லை
+
+- **மீதமுள்ள ஆபத்து:** app settings-ல் release lookup, workflow dispatch, run status ஆகியவை `nvmk1985-blip/My-Dream-Women`-ஐப் பயன்படுத்துகின்றன; இந்த check-க்காகக் கொடுக்கப்பட்ட repo `nvmk1985-blip/My-dream-woman-pro`. முதல் repo-க்கான public metadata request `404` கொடுத்தது; அது private, மாற்றப்பட்ட, அல்லது இல்லாத repo எனத் தனியாக உறுதிப்படுத்த முடியவில்லை. இதனால் app தவறான repo-வில் build தொடங்கவோ, status/release-ஐப் பெற முடியாமலோ இருக்கலாம்.
+- **சரிசெய்ய வேண்டிய கோப்பு/பகுதி:** `artifacts/tamil-ai-chat/app/settings.tsx` — `GITHUB_REPO` மற்றும் latest APK URL.
+
+### 6.3 Settings app feature branch-க்கு பதிலாக `main`-ஐ build செய்கிறது
+
+- **மீதமுள்ள ஆபத்து:** workflow-ஐ dispatch செய்யும் request-ல் `{ ref: 'main' }` அனுப்பப்படுகிறது. Feature branch-இல் உள்ள மாற்றங்கள் `main`-க்கு merge செய்யப்படும் வரை இந்த app வழி உருவாக்கப்படும் APK-யில் இடம்பெறாது.
+- **சரிசெய்ய வேண்டிய கோப்பு/பகுதி:** `artifacts/tamil-ai-chat/app/settings.tsx` — workflow dispatch ref தேர்வு.
+
+### 6.4 `/api/app-config` வழியாக server secrets வெளிப்படக்கூடும்
+
+- **மீதமுள்ள ஆபத்து:** API config route authentication இல்லாமல் mount செய்யப்பட்டுள்ளதாக source காட்டுகிறது; அதன் response `GITHUB_KEY`, Hugging Face, Gemini, OpenRouter, Groq மற்றும் Cloudinary key/secret மதிப்புகளைச் சேர்க்கிறது. இந்த environment variables deployed server-ல் அமைக்கப்பட்டிருந்தால், endpoint-ஐ அணுகும் யாருக்கும் அவை கிடைக்கலாம். Deployed endpoint-ஐ அழைத்து மதிப்புகளைப் படிக்கவில்லை; secrets உள்ளனவா அல்லது வெளியில் சென்றுள்ளனவா என்பது உறுதிப்படுத்தப்படவில்லை.
+- **சரிசெய்ய வேண்டிய கோப்பு/பகுதி:** `artifacts/api-server/src/routes/app-config.ts` மற்றும் route-ஐ பாதுகாக்கும் server access control.
+
+### 6.5 உறுதிப்படுத்திய பாதுகாப்பு இயல்புநிலை
+
+- Render redeploy input-ன் default `false`; அதனால் workflow-ஐ சாதாரணமாக dispatch செய்வது மட்டும் Render-ஐ redeploy செய்யாது.
+- Workflow `workflow_dispatch` மூலம் மட்டும் தொடங்குகிறது; `push` அல்லது `pull_request` trigger இல்லை. எனவே branch/PR மாற்றங்களுக்கு இது தானாக build ஓட்டாது.
+- Branch protection மற்றும் required review/check அமைப்புகள் இந்த ஆய்வில் உறுதிப்படுத்தப்படவில்லை; அவை இல்லை என்று கருதக்கூடாது.
