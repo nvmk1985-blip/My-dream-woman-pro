@@ -36,7 +36,7 @@ The existing `useColors()` tokens remain the runtime palette source. No dependen
 
 - `git diff --check`: passed.
 - Full app TypeScript typecheck: blocked because this fresh checkout has no `node_modules`; `tsc` consequently reported missing Expo/React Native packages and compiler environment errors across the app.
-- Expo preview: not verified. The configured workflow stopped with `Command "expo" not found` because dependencies are not installed.
+- Expo preview: not verified. The configured workflow stopped with `Command "expo" not found` because dependencies are not installed. A screenshot attempt showed `Backend Not Configured` and two browser 404s instead of the target screens; no backend configuration was changed as part of Step 4b.
 - Dependency installation, lockfile edits, APK workflow, and device build were intentionally not attempted.
 
 ## Next
