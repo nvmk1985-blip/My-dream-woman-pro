@@ -1,7 +1,7 @@
 # Step 4b — Character management UI
 
 **Status:** Code complete; pushed to `feature/black-leather-royal-gold`  
-**Implementation commit:** pending  
+**Implementation commit:** `a8725c1e961093a1e775e12d2877901df734a4a3`  
 **Date:** 2026-10-18
 
 ## Scope completed
