@@ -6,13 +6,15 @@
 - Step 1 read-only audit: **முடிந்தது** — [step-1-audit.md](step-1-audit.md).
 - Step 2 shared design-token foundation: **முடிந்தது** — [step-2-design-system.md](step-2-design-system.md).
 - Step 2 visual design board and icon concept exports: **முடிந்தது** — [design guide](../docs/design-system/README.md), [UI implementation guide](../docs/AGENTS.md), and [updated Step 2 handoff](step-2-design-system.md) (handoff update commit `adafeb66f752`). The icon exports remain design-only and are not wired into app assets.
-- Steps 2–4b branch: `feature/black-leather-royal-gold` (இன்னும் `main`-க்கு merge செய்யப்படவில்லை). Step 2 token code commit `3e69dd3855e1576e7a5bdbfab1f1bd53f458af41`; Step 2 handoff/docs commit `f94c6cf6f0dea6d96a3aabe63f253551445e5ed6`.
+- Steps 2–5 branch: `feature/black-leather-royal-gold` (இன்னும் `main`-க்கு merge செய்யப்படவில்லை). Step 2 token code commit `3e69dd3855e1576e7a5bdbfab1f1bd53f458af41`; Step 2 handoff/docs commit `f94c6cf6f0dea6d96a3aabe63f253551445e5ed6`.
 - Step 3 Settings modal, `/settings`, `/keys` UI redesign: **code முடிந்தது** — [step-3-settings.md](step-3-settings.md); code commit `1b80712041b1be007147dfaedec83d045dd95f96`.
 - Step 3 app typecheck மற்றும் live UI preview: **சரிபார்க்க முடியவில்லை** — worktree-ல் `node_modules` இல்லை; Expo workflow `expo` executable இல்லாததால் தொடங்கவில்லை. Dependency/lockfile பிரச்சினைகளை மாற்றவில்லை.
 - Step 4a Chat message/send/history: **முடிந்தது** — [step-4a-chat-messages-history.md](step-4a-chat-messages-history.md); code commit `e7d25367a9dfe98e64cb7094f2dda06f85855e2f` (feature branch மட்டும்).
 - Step 4a TypeScript TSX syntax parse மற்றும் diff whitespace check: **வெற்றி**; முழு app typecheck/device runtime: **சரிபார்க்க முடியவில்லை** — இந்த workspace-ல் app checkout மற்றும் Expo dependencies இல்லை.
 - Step 4b Character list, character edit/save, URL மற்றும் navigation UI: **code முடிந்தது** — [step-4b-character-management.md](step-4b-character-management.md). Typecheck/live preview முடியவில்லை; காரணமும் verification வரம்பும் handoff-ல் பதிவு செய்யப்பட்டுள்ளது.
-- அடுத்தது Step 5a: முதலில் README/reference scope-ஐ ஆய்வு செய்து user-க்கு உறுதிப்படுத்தவும்; code மாற்றத்திற்கு தனி வெளிப்படையான approval தேவை.
+- Step 5 Cloudinary, Gallery, Image-to-Script UI restyle: **code முடிந்தது** — [step-5-cloudinary-gallery-image-to-script.md](step-5-cloudinary-gallery-image-to-script.md); code commit `80be37c30bf8ecd4730e7334bc0d6fd95d187028`.
+- Step 5 TSX syntax, shared-color mapping/helper checks மற்றும் diff whitespace check: **வெற்றி**; full app typecheck மற்றும் live device preview: **சரிபார்க்க முடியவில்லை** — app dependencies/Expo types இந்த workspace-ல் இல்லை.
+- அடுத்தது Step 6 Script-to-Image + Swap UI: **நிலுவை**; code தொடங்குவதற்கு முன் user-ன் வெளிப்படையான approval தேவை. அதன் பின் Step 7 regression validation-மும் நிலுவையில் உள்ளது.
 - ஆய்வு செய்த app source commit: `7a1fadc0a928b6975edecd1e8d646c67382ce0fb`.
 - Step 1 handoff commit-ல் `future/` ஆவணங்கள் மட்டும் சேர்க்கப்பட்டன; அப்போது app source/assets மாற்றப்படவில்லை.
 - Step 1-க்கு GitHub Action trigger செய்யப்படவில்லை.
@@ -26,9 +28,9 @@
 - Visual direction: Black Leather + Royal Gold + Sky Blue/Cyan Neon + subtle premium glassmorphism; deep charcoal backgrounds (#080B0D), gold for premium emphasis, cyan for interactive states, warm-white text, and readable Tamil copy.
 - `Build APK` workflow கைமுறையாக trigger செய்யப்படும்; அது APK-ஐ GitHub Release-ல் வெளியிடும். அதே tag-ஐ rerun செய்தால் அந்த release/tag-ஐ delete செய்து மீண்டும் உருவாக்கும்; Render redeploy இயல்பாக false. Trigger-க்கு முன் இந்த side effects-ஐ user-க்கு தெளிவுபடுத்தவும்.
 
-## Requested design brief — Black Leather + Royal Gold (Steps 2, 3, 4a, 4b complete; Steps 5–7 pending)
+## Requested design brief — Black Leather + Royal Gold (Steps 2, 3, 4a, 4b, 5 complete; Steps 6–7 pending)
 
-புதிய இணைக்கப்பட்ட file-ன் விவரக்குறிப்பு, முந்தைய Black + Electric Purple brief-ஐ முழுமையாக மாற்றுகிறது. Step 2 shared theme-token foundation, Step 3 Settings UI, Step 4a Chat message/send/history behavior, மற்றும் Step 4b Character list/edit/URL UI feature/black-leather-royal-gold branch-ல் உள்ளன. Step 5–7-க்கு ஒவ்வொரு code phase-க்கும் முன் user-ன் வெளிப்படையான OK பெறவும்.
+புதிய இணைக்கப்பட்ட file-ன் விவரக்குறிப்பு, முந்தைய Black + Electric Purple brief-ஐ முழுமையாக மாற்றுகிறது. Step 2 shared theme-token foundation, Step 3 Settings UI, Step 4a Chat message/send/history behavior, Step 4b Character list/edit/URL UI, மற்றும் Step 5 Cloudinary/Gallery/Image-to-Script UI feature/black-leather-royal-gold branch-ல் உள்ளன. Step 6–7-க்கு ஒவ்வொரு code phase-க்கும் முன் user-ன் வெளிப்படையான OK பெறவும்.
 
 
 ### Reference Images
@@ -732,4 +734,4 @@ Prioritize usability, premium visual hierarchy, accurate text alignment, and pre
 - Build trigger-க்கு முன் Release side effect-ஐ தெரிவிக்கவும்: workflow APK-ஐ GitHub Release-ல் வெளியிடும்; அதே tag-ஐ rerun செய்தால் ஏற்கெனவே உள்ள release/tag-ஐ delete செய்து மீண்டும் உருவாக்கும். Render redeploy input இயல்பாக false.
 
 ## அடுத்த நிலை
-Step 4b Character list, edit/save, URL மற்றும் navigation UI முடிந்தது — [step-4b-character-management.md](step-4b-character-management.md)-ல் scope, preserved flows, commit மற்றும் சரிபார்ப்பு வரம்புகள் உள்ளன. அடுத்தது Step 5a: README/reference-ஐ முதலில் ஆய்வு செய்து scope-ஐ உறுதிப்படுத்தவும்; code மாற்றத்திற்கு முன் வெளிப்படையான approval பெறவும். கட்டப் பரிந்துரை மற்றும் உறுதிப்படுத்தப்பட்ட route/handler map `step-1-audit.md`-ல் உள்ளது.
+Step 5 Cloudinary, Gallery, Image-to-Script UI restyle முடிந்தது — [step-5-cloudinary-gallery-image-to-script.md](step-5-cloudinary-gallery-image-to-script.md)-ல் scope, பாதுகாக்கப்பட்ட செயல்பாடுகள், commit மற்றும் verification வரம்புகள் உள்ளன. அடுத்தது Step 6 Script-to-Image + Swap UI; code மாற்றத்திற்கு முன் user-ன் வெளிப்படையான approval பெறவும். Step 7 regression validation பின்னர் நிலுவையில் உள்ளது. கட்டப் பரிந்துரை மற்றும் உறுதிப்படுத்தப்பட்ட route/handler map `step-1-audit.md`-ல் உள்ளது.

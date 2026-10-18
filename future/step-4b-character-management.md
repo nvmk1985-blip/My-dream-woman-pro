@@ -22,7 +22,7 @@ The existing `useColors()` tokens remain the runtime palette source. No dependen
 - Group selection and group-chat navigation retain the same selection and route logic.
 - Character edit save payload, AsyncStorage/Cloudinary writes, save/error alerts, and `router.back()` remain unchanged.
 - URL load, validation, add, edit, enable/disable, open, delete, reorder, and save-order behavior remains unchanged.
-- `/welcome`, `app/home.tsx`, Step 5a, and APK/Build APK workflows were not changed or triggered.
+- `/welcome`, `app/home.tsx`, and APK/Build APK workflows were not changed or triggered by Step 4b. Step 5 was completed later; see [step-5-cloudinary-gallery-image-to-script.md](step-5-cloudinary-gallery-image-to-script.md).
 
 ## Files changed
 
@@ -41,4 +41,4 @@ The existing `useColors()` tokens remain the runtime palette source. No dependen
 
 ## Next
 
-Step 5a has not been inspected or implemented. Review the README/reference to confirm its exact scope with the user before any Step 5a code change. Keep this work on the feature branch; do not merge to `main` or trigger APK builds until all planned phases and approvals are complete.
+Step 5 was completed later — see [step-5-cloudinary-gallery-image-to-script.md](step-5-cloudinary-gallery-image-to-script.md). Step 6 Script-to-Image + Swap UI is next and requires the user's explicit approval before code changes. Keep all planned work on the feature branch; do not merge to `main` or trigger APK builds until all phases and approvals are complete.
