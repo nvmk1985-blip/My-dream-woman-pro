@@ -16,7 +16,7 @@
 - Step 5 TSX syntax, shared-color mapping/helper checks மற்றும் diff whitespace check: **வெற்றி**; full app typecheck மற்றும் live device preview: **சரிபார்க்க முடியவில்லை** — app dependencies/Expo types இந்த workspace-ல் இல்லை.
 - Step 6 Script-to-Image + Face Swap UI restyle: **code முடிந்தது** — [step-6-script-to-image-and-swap.md](step-6-script-to-image-and-swap.md); code commit `78642ac1df1c635945d16cf7aa1ba77c21937edc`.
 - Step 6 TSX syntax மற்றும் diff whitespace checks: **வெற்றி**; full app typecheck மற்றும் live preview: **சரிபார்க்க முடியவில்லை** — Expo dependencies/workflow கிடைக்கவில்லை.
-- அடுத்தது Step 7 regression validation: **நிலுவை**.
+- Step 7 regression validation: **நிலுவை** — Step 1 diff/path மற்றும் chat behavior read-only checks செய்யப்பட்டன; மீதமுள்ள ஆபத்துகள் [Remaining Risks](remaining-risks.md)-ல் உள்ளன.
 - ஆய்வு செய்த app source commit: `7a1fadc0a928b6975edecd1e8d646c67382ce0fb`.
 - Step 1 handoff commit-ல் `future/` ஆவணங்கள் மட்டும் சேர்க்கப்பட்டன; அப்போது app source/assets மாற்றப்படவில்லை.
 - Step 1-க்கு GitHub Action trigger செய்யப்படவில்லை.
@@ -736,4 +736,4 @@ Prioritize usability, premium visual hierarchy, accurate text alignment, and pre
 - Build trigger-க்கு முன் Release side effect-ஐ தெரிவிக்கவும்: workflow APK-ஐ GitHub Release-ல் வெளியிடும்; அதே tag-ஐ rerun செய்தால் ஏற்கெனவே உள்ள release/tag-ஐ delete செய்து மீண்டும் உருவாக்கும். Render redeploy input இயல்பாக false.
 
 ## அடுத்த நிலை
-Step 6 Script-to-Image + Face Swap UI restyle முடிந்தது — [step-6-script-to-image-and-swap.md](step-6-script-to-image-and-swap.md)-ல் scope, பாதுகாக்கப்பட்ட flows, commit மற்றும் verification வரம்புகள் உள்ளன. அடுத்தது Step 7 regression validation; அது இன்னும் செய்யப்படவில்லை. கட்டப் பரிந்துரை மற்றும் உறுதிப்படுத்தப்பட்ட route/handler map `step-1-audit.md`-ல் உள்ளது.
+Step 6 Script-to-Image + Face Swap UI restyle முடிந்தது — [step-6-script-to-image-and-swap.md](step-6-script-to-image-and-swap.md)-ல் scope, பாதுகாக்கப்பட்ட flows, commit மற்றும் verification வரம்புகள் உள்ளன. Step 7 regression validation இன்னும் முழுமையடையவில்லை; அதன் Step 1 diff/path மற்றும் chat behavior read-only checks செய்யப்பட்டுள்ளன. மீதமுள்ள ஆபத்துகள் [Remaining Risks](remaining-risks.md)-ல் உள்ளன. கட்டப் பரிந்துரை மற்றும் உறுதிப்படுத்தப்பட்ட route/handler map `step-1-audit.md`-ல் உள்ளது.
