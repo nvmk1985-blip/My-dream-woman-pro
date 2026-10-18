@@ -24,3 +24,15 @@
 - **எந்த check-இல் கண்டறிந்தது:** Step 7, Step 1 — `loadChatHistory`-ன் parse மற்றும் format failure பாதைகளை ஆய்வு செய்தபோது.
 - **மீதமுள்ள ஆபத்து:** JSON parse மற்றும் மேல்நிலை value array-ஆக உள்ளதா என்பவை சரிபார்க்கப்படுகின்றன; ஒவ்வொரு entry-யின் `id`, `role`, `content`, `timestamp` போன்ற fields முழுமையாகச் சரிபார்க்கப்படவில்லை. சரியான JSON array-க்குள் தவறான message வடிவம் இருந்தால் அது ஏற்றுக்கொள்ளப்பட்டு, UI-யில் எதிர்பாராத நடத்தையை ஏற்படுத்தலாம்.
 - **சரிசெய்ய வேண்டிய கோப்பு/பகுதி:** `artifacts/tamil-ai-chat/app/chat.tsx` — `loadChatHistory`-ல் parse செய்யப்பட்ட entries-ஐ `Message`-ஆக மாற்றும் பகுதி.
+
+## 4. புதிய shadow நிறங்கள் shared token-ஐப் பயன்படுத்தவில்லை
+
+- **எந்த check-இல் கண்டறிந்தது:** Step 7 — Theme Tokens Check; மாற்றப்பட்ட app screens-ல் புதிதாகச் சேர்க்கப்பட்ட color literals-ஐ ஆய்வு செய்தபோது.
+- **மீதமுள்ள ஆபத்து:** `ai-girls.tsx`-ல் இரண்டு புதிய `shadowColor: '#000'` மதிப்புகள் நேரடியாக உள்ளன. இதனால் புதிய hard-coded color value சேர்க்க வேண்டாம் என்ற theme வழிகாட்டி முழுமையாகப் பின்பற்றப்படவில்லை. இவை shadow நிறங்கள்; runtime-ல் visual impact உள்ளதா என்பது device-ல் சரிபார்க்கப்படவில்லை.
+- **சரிசெய்ய வேண்டிய கோப்பு/பகுதி:** `artifacts/tamil-ai-chat/app/ai-girls.tsx` — user avatar toolbar மற்றும் floating action button shadow styles.
+
+## 5. Design token JSON, runtime palette-ன் முழு export அல்ல
+
+- **எந்த check-இல் கண்டறிந்தது:** Step 7 — Theme Tokens Check; runtime `colors.ts`-ஐ design token JSON-உடன் ஒப்பிட்டபோது.
+- **மீதமுள்ள ஆபத்து:** `colors.ts`-ல் 55 தனித்துவமான நிற மதிப்புகள் உள்ளன; `tokens.json`-ல் 30 மட்டுமே உள்ளன. JSON-ல் உள்ள மதிப்புகள் runtime source-ல் உள்ளன; ஆனால் 25 தனித்துவமான runtime நிற மதிப்புகள் JSON-ல் விடுபட்டுள்ளன. `docs/design-system/README.md`-ல் JSON தற்போதைய `useColors()` மதிப்புகளின் export எனக் குறிப்பிடப்படுவதால், design export முழுமையற்றதாக இருக்கலாம்.
+- **சரிசெய்ய வேண்டிய கோப்பு/பகுதி:** `docs/design-system/tokens.json` — விடுபட்ட palette values சேர்க்க; `docs/design-system/README.md` — முழு export அல்ல என்றால் அதன் scope-ஐத் தெளிவுபடுத்த.
