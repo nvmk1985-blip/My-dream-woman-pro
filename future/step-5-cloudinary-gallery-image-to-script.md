@@ -49,4 +49,4 @@ Existing layout and interactions were retained. A shared style helper translates
 
 ## Next
 
-Step 6 Script-to-Image + Swap UI remains pending. Get the user's explicit approval before making Step 6 code changes. Step 7 regression validation follows Step 6.
+Step 6 Script-to-Image + Swap UI is complete — see [step-6-script-to-image-and-swap.md](step-6-script-to-image-and-swap.md). Step 7 regression validation remains pending.
