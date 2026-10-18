@@ -22,7 +22,7 @@ The existing `useColors()` tokens remain the runtime palette source. No dependen
 - Group selection and group-chat navigation retain the same selection and route logic.
 - Character edit save payload, AsyncStorage/Cloudinary writes, save/error alerts, and `router.back()` remain unchanged.
 - URL load, validation, add, edit, enable/disable, open, delete, reorder, and save-order behavior remains unchanged.
-- `/welcome`, `app/home.tsx`, and APK/Build APK workflows were not changed or triggered by Step 4b. Step 5 was completed later; see [step-5-cloudinary-gallery-image-to-script.md](step-5-cloudinary-gallery-image-to-script.md).
+- `/welcome`, `app/home.tsx`, and APK/Build APK workflows were not changed or triggered by Step 4b. Step 5 was completed later; see [step-5-cloudinary-gallery-image-to-script.md](step-5-cloudinary[...])
 
 ## Files changed
 
@@ -35,10 +35,9 @@ The existing `useColors()` tokens remain the runtime palette source. No dependen
 ## Verification and limits
 
 - `git diff --check`: passed.
-- Full app TypeScript typecheck: blocked because this fresh checkout has no `node_modules`; `tsc` consequently reported missing Expo/React Native packages and compiler environment errors across the app.
-- Expo preview: not verified. The configured workflow stopped with `Command "expo" not found` because dependencies are not installed. A screenshot attempt showed `Backend Not Configured` and two browser 404s instead of the target screens; no backend configuration was changed as part of Step 4b.
-- Dependency installation, lockfile edits, APK workflow, and device build were intentionally not attempted.
+- Full app TypeScript typecheck: blocked because this fresh checkout has no `node_modules`; `tsc` consequently reported missing Expo/React Native packages and compiler environment errors across th[...]
+- Expo preview: not verified. The configured workflow stopped with `Command "expo" not found` because dependencies are not installed. A screenshot attempt showed `Backend Not Configured` and two b[...]
 
 ## Next
 
-Step 5 was completed later — see [step-5-cloudinary-gallery-image-to-script.md](step-5-cloudinary-gallery-image-to-script.md). Step 6 Script-to-Image + Swap UI is next and requires the user's explicit approval before code changes. Keep all planned work on the feature branch; do not merge to `main` or trigger APK builds until all phases and approvals are complete.
+Step 5 was completed later — see [step-5-cloudinary-gallery-image-to-script.md](step-5-cloudinary-image-to-script.md). Step 6 Script-to-Image + Swap UI is next and requires the user's ex[...]

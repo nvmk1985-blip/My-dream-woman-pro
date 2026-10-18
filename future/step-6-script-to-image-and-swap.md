@@ -17,7 +17,7 @@ Both screens use the existing `useColors()` theme tokens. Icons were moved to Io
 
 ## Existing flows preserved
 
-The Step 6 commit changes presentation, spacing, colors, icons, and style helpers. A diff check found no changes to event handlers, state transitions, API calls, routes, storage, permissions, or media-processing logic.
+The Step 6 commit changes presentation, spacing, colors, icons, and style helpers. A diff check found no changes to event handlers, state transitions, API calls, routes, storage, permissions, or m[...]
 
 - Prompt/image mode, image upload, prompt analysis, prompt editing, generation, retry, and new-photo actions remain in place.
 - Face/target image selection, enhancement toggle, swap, fallback link, retry, result display, and media actions remain in place.
@@ -36,4 +36,4 @@ The Step 6 commit changes presentation, spacing, colors, icons, and style helper
 
 ## Next
 
-Step 7 regression validation remains pending. It should cover the planned screens and preserved media flows; record only verified results. Investigate reported failures before proposing fixes, and do not change app behavior without the user's explicit approval.
+Step 7 regression validation remains pending. It should cover the planned screens and preserved media flows; record only verified results. Investigate reported failures before proposing fixes, and[...]
